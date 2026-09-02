@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightblue;
+      }
+      .body-update{
+          width: 150px;
+          height: 40px;
+          border: 1px solid red;
+          text-align: center;
+          line-height: 40px;
+          background-color: orange;
+          cursor: pointer;
+      }
+      .body-update:hover{
+          background-color: darkorange;
+      }
+      #updateNameBody{
+          width: 1300px;
+          height: 700px;
+          position: relative;
+          left: 200px;
+          top: 50px;
+          background-color: lightblue;
+      }
+      .uname-button{
+          width: 60px;
+          height: 25px;
+          background-color: aqua;
+          color: rebeccapurple;
+          font-family: 华文行楷, serif;
+          font-size: 20px;
+          text-align: center;
+          line-height: 25px;
+          border: 1px solid black;
+          cursor: pointer;
+          border-radius: 2px;
+      }
+      .uname-button:hover{
+          background-color: deepskyblue;
+      }
+      .updateInput{
+          width: 150px;
+          height: 20px;
+          color: blue;
+          font-size: 20px;
+          font-family: 华文仿宋,serif;
+      }
+      #secondTitle{
+          width: 300px;
+          height: 50px;
+          background-image: -webkit-linear-gradient(0deg,mediumpurple 20%,red 33%,green);
+          -webkit-background-clip: text;
+          color: transparent;
+          font-family: 华文行楷, serif;
+          font-size: 40px;
+          position: relative;
+          left: 700px;
+          top: 30px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="body-personMessage" class="body-update" style="display: inline-block;position: relative;top: 30px;left: 30px;background-color: darkorange">
+                  <div style="color: black;font-size: 20px;font-family: 华文新魏,serif">修改个人信息</div>
+              </div>
+              <div id="body-password" class="body-update" style="display: inline-block;position: relative;top: 30px;left: 50px" @click="jumpPwd">
+                  <div style="color: black;font-size: 20px;font-family: 华文新魏,serif">修改密码</div>
+              </div>
+              <div id="secondTitle">
+                  修改个人信息
+              </div>
+              <!--修改昵称和邮箱号等个人信息-->
+              <div id="updateNameBody">
+                 <div>
+                     <div id="updateNameBody-uname" class="updateNameBodyDiv" style="position: relative; left: 400px;top:20px">
+                         <div>
+                             <span style="font-size: 20px;font-family: 华文仿宋,serif">昵称：</span><span v-show="showSpan" style="color: blue;font-size: 20px;font-family: 华文仿宋,serif;display: inline-block;">{{name}}</span>
+                             <label for="uname">
+                                 <input :type="showInput" name="uname" id="uname" maxlength="12" style="display: inline-block;" v-model="sendData.nameUpdate" class="updateInput">
+                             </label>
+                             <div v-show="unameBtnShow" style="display: inline-block;" class="uname-button" @click="showUpdateBtn">
+                                 修改
+                             </div>
+                             <div v-show="!unameBtnShow" style="display: inline-block;" class="uname-button" @click="showSubmitBtn">
+                                 确定
+                             </div>
+                         </div>
+                     </div>
+                     <div id="updateNameBody-uemail" class="updateNameBodyDiv" style="position: relative; left: 400px;top:50px">
+                         <span style="font-size: 20px;font-family: 华文仿宋,serif">邮箱：</span><span v-show="showEmail" style="color: blue;font-size: 20px;font-family: 华文仿宋,serif;display: inline-block;">{{selectData.email}}</span>
+                         <label for="uemail">
+                             <input :type="showEmailInput" name="uemail" id="uemail" style="display: inline-block;" v-model="sendData.emailUpdate" class="updateInput">
+                         </label>
+                         <div v-show="uemailBtn" style="display: inline-block;" class="uname-button" @click="showEmailBtn">
+                             修改
+                         </div>
+                         <div v-show="!uemailBtn" style="display: inline-block;" class="uname-button" @click="showEmailSubmitBtn">
+                             确定
+                         </div>
+                     </div>
+                     <div id="updateNameBody-age" class="updateNameBodyDiv" style="position: relative; left: 400px;top:80px">
+                         <span style="font-size: 20px;font-family: 华文仿宋,serif">年龄：</span><span v-show="showAge" style="color: blue;font-size: 20px;font-family: 华文仿宋,serif;display: inline-block;">{{selectData.age}}</span>
+                         <label for="age">
+                             <input :type="showAgeInput" name="age" id="age" oninput="if (value > 120)value = 120" style="display: inline-block;" v-model="sendData.ageUpdate" class="updateInput">
+                         </label>
+                         <div v-show="ageBtn" style="display: inline-block;" class="uname-button" @click="showAgeBtn">
+                             修改
+                         </div>
+                         <div v-show="!ageBtn" style="display: inline-block;" class="uname-button" @click="showSubmitAgeBtn">
+                             确定
+                         </div>
+                     </div>
+                     <div id="updateNameBody-likes" class="updateNameBodyDiv" style="position: relative; left: 400px;top:110px">
+                         <span style="font-size: 20px;font-family: 华文仿宋,serif">爱好：</span><span v-show="showLikes" style="color: blue;font-size: 20px;font-family: 华文仿宋,serif;display: inline-block;">{{selectData.likes}}</span>
+                         <label>
+                             <textarea maxlength="20" style="display: inline-block;color: blue;font-size: 20px;font-family: 华文仿宋,serif;width: 300px;height: 200px" v-model="sendData.likesUpdate" v-show="showLikesInput"></textarea>
+                         </label>
+                         <div v-show="!likesBtn" style="display: inline-block;" class="uname-button" @click="showLikesBtn">
+                             修改
+                         </div>
+                         <div v-show="likesBtn" style="display: inline-block;" class="uname-button" @click="showSubmitLikesBtn">
+                             确定
+                         </div>
+                     </div>
+                     <div id="updateNameBody-content" class="updateNameBodyDiv" style="position: relative; left: 400px;top:140px">
+                         <span style="font-size: 20px;font-family: 华文仿宋,serif">个性签名：</span><span v-show="showContent" style="color: blue;font-size: 20px;font-family: 华文仿宋,serif;display: inline-block;">{{selectData.content}}</span>
+                         <label>
+                             <textarea maxlength="30" style="display: inline-block;color: blue;font-size: 20px;font-family: 华文仿宋,serif;width: 300px;height: 200px" v-model="sendData.contentUpdate" v-show="showContentInput"></textarea>
+                         </label>
+                         <div v-show="!contentBtn" style="display: inline-block;" class="uname-button" @click="showContentBtn">
+                             修改
+                         </div>
+                         <div v-show="contentBtn" style="display: inline-block;" class="uname-button" @click="showSubmitContentBtn">
+                             确定
+                         </div>
+                     </div>
+                 </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            unameBtnShow:true,
+            showInput:"hidden",
+            showSpan:true,
+            showEmail:true,
+            showEmailInput:"hidden",
+            uemailBtn:true,
+            showAge:true,
+            showAgeInput:"hidden",
+            ageBtn:true,
+            showLikes:false,
+            showLikesInput:true,
+            likesBtn:true,
+            showContent:false,
+            showContentInput:true,
+            contentBtn:true,
+            sendData:{
+                nameUpdate:"",
+                emailUpdate:"",
+                ageUpdate:"",
+                likesUpdate:"",
+                contentUpdate:""
+            },
+            selectData:{
+                email:"",
+                age:0,
+                likes:"",
+                content:""
+            }
+        },
+        created(){
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            //向后端发请求，查询个人的信息
+            let vthis = this;
+            axios.get("/user/findById/"+this.userId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.selectData.email = result.data.data.email;
+                    vthis.selectData.age = result.data.data.age;
+                    vthis.selectData.likes = result.data.data.likes;
+                    vthis.selectData.content = result.data.data.content;
+                    vthis.sendData.likesUpdate = result.data.data.likes;
+                    vthis.sendData.contentUpdate = result.data.data.content;
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            jumpPwd(){
+                window.location.href = "updatePwd.html?token="+this.token;
+            },
+            showUpdateBtn(){
+                this.showInput = "text";
+                this.showSpan = false;
+                this.unameBtnShow = false;
+                this.sendData.nameUpdate = this.name;
+            },
+            showSubmitBtn(){
+                let vthis = this;
+                this.showInput = "hidden";
+                this.showSpan = true;
+                this.unameBtnShow = true;
+                if (this.sendData.nameUpdate === ""){
+                    alert("昵称不能为空！");
+                    return;
+                }
+                //向后端真正修改数据库中的信息
+                axios.get("/user/updateName/"+this.userId+"/"+this.sendData.nameUpdate,config).then(function (result){
+                    if (result.data.code === 20031){
+                        sessionStorage.setItem("name",result.data.data.name);
+                        vthis.name = sessionStorage.getItem("name");
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            showEmailBtn(){
+                 this.showEmailInput = "text";
+                 this.showEmail = false;
+                 this.uemailBtn = false;
+                 this.sendData.emailUpdate = this.selectData.email;
+            },
+            showEmailSubmitBtn(){
+                 let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/;
+                 let vthis = this;
+                 this.showEmailInput = "hidden";
+                 this.showEmail = true;
+                 this.uemailBtn = true;
+                 if (!regex.test(vthis.sendData.emailUpdate)){
+                     alert("请填写正确的邮箱！");
+                     return;
+                 }
+                 //向后端真正的修改数据
+                axios.get("/user/updateEmail/"+this.userId+"/"+this.sendData.emailUpdate,config).then(function (result){
+                    if (result.data.code === 20031){
+                        vthis.selectData.email = result.data.data.email;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            showAgeBtn(){
+                this.showAgeInput = "number";
+                this.showAge = false;
+                this.ageBtn = false;
+                this.sendData.ageUpdate = this.selectData.age;
+            },
+            showSubmitAgeBtn(){
+                let vthis = this;
+                this.showAgeInput = "hidden";
+                this.showAge = true;
+                this.ageBtn = true;
+                if (vthis.sendData.ageUpdate === ""){
+                    alert("年龄不能为空！");
+                    return;
+                }
+                //向后端真正的修改数据
+                axios.get("/user/updateAge/"+this.userId+"/"+this.sendData.ageUpdate,config).then(function (result){
+                    if (result.data.code === 20031){
+                        vthis.selectData.age = result.data.data.age;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            showLikesBtn(){
+                this.showLikesInput = true;
+                this.showLikes = false;
+                this.likesBtn = true;
+            },
+            showSubmitLikesBtn(){
+                let vthis = this;
+                this.showLikesInput = false;
+                this.showLikes = true;
+                this.likesBtn = false;
+                if (vthis.sendData.likesUpdate === ""){
+                    alert("还是写点什么吧！");
+                    window.location.href = "user.html?token=" + vthis.token;
+                    return;
+                }
+                //向后端真正的修改数据
+                axios.get("/user/updateLikes/"+this.userId+"/"+this.sendData.likesUpdate,config).then(function (result){
+                    if (result.data.code === 20031){
+                        vthis.selectData.likes = result.data.data.likes;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            showContentBtn(){
+                this.showContentInput = true;
+                this.showContent = false;
+                this.contentBtn = true;
+            },
+            showSubmitContentBtn(){
+                let vthis = this;
+                this.showContentInput = false;
+                this.showContent = true;
+                this.contentBtn = false;
+                if (vthis.sendData.contentUpdate === ""){
+                    alert("还是写点什么吧！");
+                    window.location.href = "user.html?token=" + vthis.token;
+                    return;
+                }
+                //向后端真正的修改数据
+                axios.get("/user/updateContent/"+this.userId+"/"+this.sendData.contentUpdate,config).then(function (result){
+                    if (result.data.code === 20031){
+                        vthis.selectData.content = result.data.data.content;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

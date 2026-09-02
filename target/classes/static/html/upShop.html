@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: orange;text-align: center;line-height: 40px;position: absolute;left: 20px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold" @click="jumpShop">
+                  店铺列表
+              </div>
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: darkorange;text-align: center;line-height: 40px;position: absolute;left: 190px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold">
+                  上架店铺
+              </div>
+              <div id="system-body-container">
+                  <div style="width: 880px;height: 100px;text-align: center;line-height: 100px;font-weight: bold;font-size: 30px">
+                      添加店铺
+                  </div>
+                  <div style="width: 880px;height: 660px;background-color: deepskyblue;border-radius: 10px;">
+                      <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 15px;line-height: 70px;font-weight: bold;font-size: 20px">
+                          店铺名称：<input type="text" name="shopName" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="addData.name">
+                      </div>
+                      <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 15px;line-height: 70px;font-weight: bold;font-size: 20px">
+                          店铺地址：<input type="text" name="shopAddress" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="addData.location">
+                      </div>
+                      <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 15px;line-height: 70px;font-weight: bold;font-size: 20px">
+                          宣传标语：<input type="text" name="shopSign" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="addData.sign">
+                      </div>
+                      <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 15px;line-height: 70px;font-weight: bold;font-size: 20px">
+                          所在城市：<input type="text" name="shopCity" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="cityName">
+                          <div style="width: 30px;height: 30px;font-weight: bold;font-size: 20px;background-color: deepskyblue;position: absolute;left: 410px;top: 19px;line-height: 30px;cursor: pointer" @click="downDiv">
+                              v
+                          </div>
+                          <div style="width: 300px;height: 100px;position: absolute;left: 100px;border: 1px solid black;top: 49px;background-color: white;overflow: auto" v-show="downDivShow">
+                              <div v-for="town in townList">
+                                  <div style="width: 280px;height: 30px;border-bottom: 1px solid black;font-size: 20px;cursor: pointer" @click="changeCity($event)">
+                                      <span hidden>{{town.id}}</span>
+                                      <div style="width: 280px;height: 30px;line-height: 30px;font-weight: normal;">
+                                          {{town.city}}
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div style="width: 300px;height: 100px;position: relative;left: 30px;top: 105px;line-height: 100px;font-weight: bold;font-size: 20px;">
+                          主页头像：
+                          <div id="imageDiv" style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 102px;top: -100px;border: 1px solid black;cursor: pointer;text-align: center;line-height: 100px;font-size: 35px;font-weight: bold;background-size: 100% 100%">
+                              +
+                          </div>
+                          <form id="fileForm" enctype="multipart/form-data">
+                              <input type="file" id="uploadFile" accept="image/*" name="file" style="display: none" @change="selectImage($event)">
+                          </form>
+                      </div>
+                      <div style="width: 300px;height: 100px;position: relative;left: 30px;top: 125px;line-height: 100px;font-weight: bold;font-size: 20px;">
+                          营业执照：
+                          <div id="imageDiv1" style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 102px;top: -100px;border: 1px solid black;cursor: pointer;text-align: center;line-height: 100px;font-size: 35px;font-weight: bold;background-size: 100% 100%">
+                              +
+                          </div>
+                          <form id="imageForm" enctype="multipart/form-data">
+                              <input type="file" id="uploadFile1" accept="image/*" name="file" style="display: none" @change="selectImage1($event)">
+                          </form>
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: 100px;">
+                       <div style="width: 150px;height: 42px;background-color: orange;text-align: center;line-height: 42px;font-size: 20px;font-weight: bold;border-radius: 10px;position: relative;left: 365px;top: 29px;cursor: pointer" @click="add">
+                           添加
+                       </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            downDivShow:false,
+            cityName:"",
+            townList:{
+
+            },
+            addData:{
+                cityId:"",
+                name:"",
+                location:"",
+                sign:"",
+                userId:""
+            },
+        },
+        watch:{
+          cityName(){
+
+          }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/shipping/getLocalAddress",config).then(function (result) {
+                if (result.data.code === 400401){
+                    vthis.addData.cityId = result.data.data.id;
+                    vthis.cityName = result.data.data.city;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+            //查询所有城市信息
+            axios.get("/town/findAllTown",config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.townList = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            downDiv(){
+                this.downDivShow = !this.downDivShow;
+            },
+            selectImage(e){
+                let vthis = this;
+                let imageDiv = document.getElementById("imageDiv");
+                let fd = new FormData();
+                fd.append('file',e.target.files[0]);
+                fd.append('userId',vthis.userId);
+                axios.post("/file/imageUpload",fd,config).then(function (result) {
+                    if (result.data.code === 20091){
+                        imageDiv.innerText = "";
+                        imageDiv.style.backgroundImage = "url("+result.data.data+")";
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            selectImage1(e){
+                let vthis = this;
+                let imageDiv1 = document.getElementById("imageDiv1");
+                let fd = new FormData();
+                fd.append('file',e.target.files[0]);
+                fd.append('userId',vthis.userId);
+                axios.post("/file/imageUpload1",fd,config).then(function (result) {
+                    if (result.data.code === 20091){
+                        imageDiv1.innerText = "";
+                        imageDiv1.style.backgroundImage = "url("+result.data.data+")";
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            changeCity(e){
+                this.cityName = e.target.innerText;
+                this.addData.cityId = e.target.previousElementSibling.innerText;
+                this.downDivShow = false;
+            },
+            add(){
+                let vthis = this;
+                let imageDiv = document.getElementById("imageDiv");
+                let imageDiv1 = document.getElementById("imageDiv1");
+                vthis.addData.userId = vthis.userId;
+                if (vthis.addData.name === ""){
+                    alert("请填写店铺的名称！");
+                    return;
+                }
+                if (vthis.addData.location === ""){
+                    alert("请填写店铺的地址！");
+                    return;
+                }
+                if (vthis.addData.sign === ""){
+                    alert("请填写店铺的宣传标语！");
+                    return;
+                }
+                if (vthis.cityName === ""){
+                    alert("请选择店铺所在地址！");
+                    return;
+                }
+                if (imageDiv.innerText === "+"){
+                    alert("请添加店铺的主页头像！");
+                    return;
+                }
+                if (imageDiv1.innerText === "+"){
+                    alert("请添加店铺的营业执照！");
+                    return;
+                }
+                axios.post("/shop/addShop",vthis.addData,config).then(function (result) {
+                    alert(result.data.message);
+                    if (result.data.code === 20051){
+                        window.location.href = "havedShop.html?token="+vthis.token;
+                    }
+                });
+            }
+        }
+    });
+</script>
+<script>
+    let imageDiv = document.getElementById("imageDiv");
+    let imageDiv1 = document.getElementById("imageDiv1");
+    let uploadFile = document.getElementById("uploadFile");
+    let uploadFile1 = document.getElementById("uploadFile1");
+    imageDiv.addEventListener('click',function () {
+        uploadFile.click();
+    });
+    imageDiv1.addEventListener('click',function () {
+        uploadFile1.click();
+    });
+</script>
+</html>

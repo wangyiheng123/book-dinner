@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dinnerbase
+    username: root
+    password: 200204
+    type: com.alibaba.druid.pool.DruidDataSource
+  #redis的相关配置
+  redis:
+    host: 192.168.114.138
+    port: 6379
+    password: 123456
+    database: 2
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+mybatis:
+  type-aliases-package: cn.tedu.demo.entity
+  #mybatis的自动转驼峰设置
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#分页查询的插件pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true

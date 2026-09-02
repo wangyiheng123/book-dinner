@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      .imageForStar{
+          clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+          cursor: pointer;
+      }
+      .riderStar{
+          clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+          cursor: pointer;
+      }
+      #submitBtn:hover{
+          background-color: darkorange;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="system-body-container">
+                   <div style="width: 900px;height: 100px;text-align: center;line-height: 100px;font-size: 30px;font-weight: bold">
+                       请您对<span>{{itemAdvice.shopName}}</span>进行评价
+                   </div>
+                   <div style="width: 900px;height: 100px;background-color: deepskyblue;border-radius: 10px">
+                       <div style="width: 760px;height: 100px;position: relative;left: 60px;">
+                           <div style="display: inline-block;width: 120px;height: 100px;font-size: 20px;font-weight: bold;line-height: 100px;position: relative;top: -45px;text-align: center">
+                               评分
+                           </div>
+                           <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px;">
+                               <div class="imageForStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="clickStar(0)">
+
+                               </div>
+                           </div>
+                           <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                               <div class="imageForStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="clickStar(1)">
+
+                               </div>
+                           </div>
+                           <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                               <div class="imageForStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="clickStar(2)">
+
+                               </div>
+                           </div>
+                           <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                               <div class="imageForStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="clickStar(3)">
+
+                               </div>
+                           </div>
+                           <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                               <div class="imageForStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="clickStar(4)">
+
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                  <div style="width: 900px;height: 100px">
+                       <div style="width: 70px;height: 70px;clip-path: circle(50%);position: relative;left: 30px;top: 15px">
+                           <img src="/img/riderImage.png" alt="图片无法显示" width="70" height="70">
+                       </div>
+                      <div style="width: 100px;height: 50px;position: relative;left: 125px;top: -60px;line-height: 50px;font-size: 23px">
+                          {{itemAdvice.riderName}}
+                      </div>
+                      <div style="width: 220px;height: 30px;position: relative;left: 125px;line-height: 30px;font-size: 20px;top: -65px">
+                          <span>{{itemAdvice.day}}</span><span>{{itemAdvice.time}}</span>分送达
+                      </div>
+                  </div>
+                  <div style="width: 900px;height: 100px;background-color: deepskyblue;border-radius: 10px">
+                      <div style="width: 760px;height: 100px;position: relative;left: 60px;">
+                          <div style="display: inline-block;width: 120px;height: 100px;font-size: 20px;font-weight: bold;line-height: 100px;position: relative;top: -45px;text-align: center">
+                              评分
+                          </div>
+                          <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px;">
+                              <div class="riderStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="riderStar(0)">
+
+                              </div>
+                          </div>
+                          <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                              <div class="riderStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="riderStar(1)">
+
+                              </div>
+                          </div>
+                          <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                              <div class="riderStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="riderStar(2)">
+
+                              </div>
+                          </div>
+                          <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                              <div class="riderStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="riderStar(3)">
+
+                              </div>
+                          </div>
+                          <div style="display: inline-block;width: 120px;height: 100px;line-height: 100px">
+                              <div class="riderStar" style="width: 50px;height: 50px;background-color: white;position: relative;top: 25px;left: 35px" @click="riderStar(4)">
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div style="width: 900px;height: 400px;background-color: deepskyblue;border-radius: 10px;position: relative;top: 10px">
+                      <div style="width: 840px;height: 200px;position: relative;left: 30px;top: 15px">
+                          <textarea placeholder="有什么要对商家说的吗？" style="width: 840px;height: 200px;font-size: 18px;border-radius: 10px;background-color: deepskyblue" v-model="ItemIdAndAdviceData.comment">
+
+                          </textarea>
+                      </div>
+                      <div style="width: 840px;height: 175px;position: relative;left: 30px;top: 25px">
+                          <form id="fileForm" enctype="multipart/form-data">
+                              <input type="file" id="uploadFile" accept="image/*" name="file" style="display: none" onchange="selectImage(event)">
+                          </form>
+                          <div id="selectImage" style="width: 150px;height: 40px;text-align: center;background-color: orange;border-radius: 10px;line-height: 40px;cursor: pointer;position: relative;top: 15px">
+                              请选择图片
+                          </div>
+                      </div>
+                      <div class="imageShow" style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 200px;top: -135px;">
+                          <img id="imageShow1"  width="100" height="100" style="border-radius: 10px;border: 1px solid gainsboro">
+                      </div>
+                      <div class="imageShow" style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 310px;top: -235px;">
+                          <img id="imageShow2" width="100" height="100" style="border-radius: 10px;border: 1px solid gainsboro">
+                      </div>
+                      <div class="imageShow" style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 420px;top: -335px;">
+                          <img id="imageShow3" width="100" height="100" style="border-radius: 10px;border: 1px solid gainsboro">
+                      </div>
+                  </div>
+                  <div id="submitBtn" style="width: 150px;height: 50px;background-color: orange;cursor: pointer;text-align: center;line-height: 50px;position: relative;top: 20px;left: 375px;border-radius: 10px;font-size: 20px" @click="submitAdvice">
+                      提交评价
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            itemId:"",
+            starNum:"",
+            riderStarNum:"",
+            itemAdvice:{
+
+            },
+            advice:{
+                comment:"",
+            },
+            ItemIdAndAdviceData:{
+                userId:"",
+                itemId:"",
+                shopStar:"",
+                riderStar:"",
+                comment:""
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.itemId = sessionStorage.getItem("adviceItemId");
+            axios.get("/item/findAdviceNeedDataByItemId/"+vthis.itemId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.itemAdvice = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            clickStar(e){
+                let vthis = this;
+                let star = document.getElementsByClassName("imageForStar");
+                for (let j = 0;j <=4;j++){
+                    star[j].style.backgroundColor = "white";
+                }
+                for (let i = 0;i <= e;i++){
+                    star[i].style.backgroundColor = "orange";
+                }
+                vthis.starNum = e + 1;
+                vthis.ItemIdAndAdviceData.shopStar = vthis.starNum;
+            },
+            riderStar(e){
+                let vthis = this;
+                let star = document.getElementsByClassName("riderStar");
+                for (let j = 0;j <=4;j++){
+                    star[j].style.backgroundColor = "white";
+                }
+                for (let i = 0;i <= e;i++){
+                    star[i].style.backgroundColor = "orange";
+                }
+                vthis.riderStarNum = e + 1;
+                vthis.ItemIdAndAdviceData.riderStar = vthis.riderStarNum;
+            },
+            submitAdvice(){
+                let vthis = this;
+                vthis.ItemIdAndAdviceData.userId = vthis.userId;
+                vthis.ItemIdAndAdviceData.itemId = vthis.itemId;
+                if (vthis.ItemIdAndAdviceData.shopStar === 0 || vthis.ItemIdAndAdviceData.shopStar === ""){
+                    alert("请对商家进行评价！");
+                    return;
+                }
+                if (vthis.ItemIdAndAdviceData.riderStar === 0 || vthis.ItemIdAndAdviceData.riderStar === ""){
+                    alert("请对骑手进行评价！");
+                    return;
+                }
+                axios.post("/advice/addAdvice",vthis.ItemIdAndAdviceData,config).then(function (result) {
+                    if (result.data.code === 20051){
+                        alert("评价成功！");
+                        window.location.href = "order.html?token="+vthis.token;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            }
+        }
+    });
+</script>
+<script>
+    let itemId = sessionStorage.getItem("adviceItemId");
+    let uploadFile = document.getElementById("uploadFile");
+    let selectImageDiv = document.getElementById("selectImage");
+    let imageShows = document.getElementsByClassName("imageShow");
+    let submitButton = document.getElementById("submitButton");
+    let fileForm = document.getElementById("fileForm");
+    let  a = 0;
+    selectImageDiv.addEventListener('click',() =>{
+        uploadFile.click();
+    });
+    let path = "";
+    function selectImage(e) {
+        if (a >= 3){
+            alert("只能上传三张图片");
+            return;
+        }
+        if (e.target.files.length === 0){
+            return;
+        }
+        let fd = new FormData();
+        fd.append('file',e.target.files[0]);
+        fd.append('itemId',itemId);
+        axios.post("/file/upload",fd,config).then(function (result) {
+            if (result.data.code === 20091){
+                a++;
+                imageShows[a-1].firstElementChild.src = result.data.data;
+            }else {
+                alert(result.data.message);
+            }
+        });
+        setTimeout(function () {
+
+        },1000);
+    }
+</script>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightblue;
+      }
+      #system-secondTitle{
+          width: 300px;
+          height: 50px;
+          background-image: -webkit-linear-gradient(0deg,mediumpurple 20%,red 33%,green);
+          -webkit-background-clip: text;
+          color: transparent;
+          font-family: 华文行楷, serif;
+          font-size: 40px;
+          position: relative;
+          left: 700px;
+          top: 30px;
+      }
+      #addAddress-body{
+          width: 900px;
+          height: 500px;
+          position: relative;
+          left: 370px;
+          top: 50px;
+      }
+      .addAddress-body-input{
+          border: none;
+          border-bottom:1px solid black;
+          background-color: lightblue;
+      }
+      .addAddress-body-button{
+          display: inline-block;
+          width: 100px;
+          height: 30px;
+          background-color: white;
+          text-align: center;
+          line-height: 30px;
+          cursor: pointer;
+          border: 1px solid black;
+      }
+      .addAddress-body-button:hover{
+          background-color: orange;
+      }
+      .addAddress-body-div{
+          width: 600px;
+          height: 35px;
+          position: relative;
+          left: 150px;
+      }
+      #addAddress-button{
+          width: 200px;
+          height: 40px;
+          position: relative;
+          left: 320px;
+          top: 230px;
+          border: 1px solid black;
+          background-color: lightgray;
+          cursor: pointer;
+          text-align: center;
+          line-height: 40px;
+      }
+      #addAddress-button:hover{
+          background-color: darkgray;
+      }
+      #system-body-table{
+          width: 1460px;
+          height: 300px;
+          position: relative;
+          left: 120px;
+          top: -10px;
+      }
+      .table-title-sign{
+          width: 150px;
+          height: 60px;
+          border: 1px solid black;
+          background-color: deepskyblue;
+          display: inline-block;
+          text-align: center;
+          line-height: 60px;
+          font-size: 20px;
+          font-family: 华文行楷, serif;
+      }
+      .table-title-name{
+          width: 150px;
+          height: 60px;
+          border: 1px solid black;
+          background-color: deepskyblue;
+          display: inline-block;
+          text-align: center;
+          line-height: 60px;
+          font-size: 20px;
+          font-family: 华文行楷, serif;
+      }
+      .table-title-address{
+          width: 500px;
+          height: 60px;
+          border: 1px solid black;
+          background-color: deepskyblue;
+          display: inline-block;
+          text-align: center;
+          line-height: 60px;
+          font-size: 20px;
+          font-family: 华文行楷, serif;
+      }
+      .table-title-phone{
+          width: 300px;
+          height: 60px;
+          border: 1px solid black;
+          background-color: deepskyblue;
+          display: inline-block;
+          text-align: center;
+          line-height: 60px;
+          font-size: 20px;
+          font-family: 华文行楷, serif;
+      }
+      .table-title-button{
+          width: 350px;
+          height: 60px;
+          border: 1px solid black;
+          background-color: deepskyblue;
+          display: inline-block;
+          text-align: center;
+          line-height: 60px;
+          font-size: 20px;
+          font-family: 华文行楷, serif;
+      }
+      .table-title-button-btn{
+          width: 100px;
+          height: 30px;
+          border: 1px solid black;
+          background-color: orange;
+          display: inline-block;
+          text-align: center;
+          line-height: 30px;
+          font-size: 15px;
+          font-family: 华文行楷, serif;
+          cursor: pointer;
+      }
+      .table-title-button-btn:hover{
+          background-color: darkorange;
+      }
+      .table-title-jump{
+          width: 100px;
+          height: 30px;
+          border: 1px solid black;
+          background-color: lightgray;
+          display: inline-block;
+          text-align: center;
+          line-height: 30px;
+          font-size: 15px;
+          font-family: 华文行楷, serif;
+          cursor: pointer;
+      }
+      .table-title-jump:hover{
+          background-color: darkgray;
+      }
+      #table-title-page{
+          width: 200px;
+          height: 20px;
+          display: inline-block;
+          position: absolute;
+          left: 620px;
+          top: 270px;
+          font-size: 20px;
+      }
+      #system-body-table-noData{
+          width: 1460px;
+          height: 300px;
+          position: relative;
+          left: 120px;
+          top: -10px;
+          text-align: center;
+          line-height: 300px;
+          font-family: 华文行楷, serif;
+          font-size: 30px;
+          background-image: -webkit-linear-gradient(0deg,mediumpurple 20%,red 33%,green);
+          -webkit-background-clip: text;
+          color: transparent;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+               <div id="system-secondTitle">
+                   添加地址信息
+               </div>
+              <div id="addAddress-body">
+                   <div class="addAddress-body-div" style="top: 30px">
+                       <label>
+                           <span style="font-weight: bold;font-size: 20px">联系人：</span><input type="text" style="width: 300px;height: 20px;color: blue;font-size: 18px;outline: none" placeholder="请填写收货人姓名" class="addAddress-body-input" v-model="shipping.name">
+                       </label>
+                       <label>
+                           <input type="radio" value="先生" name="sex" checked="checked" @click="takeSex($event)"><span style="font-weight: bold;font-size: 20px">先生</span>
+                           <input type="radio" value="女士" name="sex" @click="takeSex($event)"><span style="font-weight: bold;font-size: 20px">女士</span>
+                       </label>
+                   </div>
+                   <div class="addAddress-body-div" style="top: 80px">
+                       <label>
+                           <span style="font-weight: bold;font-size: 20px">详细地址：</span><input type="text" style="outline: none;width: 300px;height: 20px;color:blue;font-size: 18px" placeholder="例如xx小区，xx号楼，x单元，xxx室" class="addAddress-body-input" v-model="shipping.address">
+                       </label>
+                   </div>
+                  <div class="addAddress-body-div" style="top: 130px">
+                      <label>
+                          <span style="font-weight: bold;font-size: 20px">手机号：</span><input type="text" maxlength="11" style="outline: none;width: 300px;height: 20px;color:blue;font-size: 18px" placeholder="请填写真实手机号码" class="addAddress-body-input" v-model="shipping.phone">
+                      </label>
+                  </div>
+                  <div class="addAddress-body-div" style="top: 180px">
+                      <div class="addAddress-body-button" @click="takeSign($event,0)">
+                          学校
+                      </div>
+                      <div class="addAddress-body-button" @click="takeSign($event,1)">
+                          公司
+                      </div>
+                      <div class="addAddress-body-button" @click="takeSign($event,2)">
+                          家
+                      </div>
+                  </div>
+                  <div id="addAddress-button" @click="addAddress">
+                      <div>
+                          添加
+                      </div>
+                  </div>
+              </div>
+              <!--表格-->
+              <div id="system-body-table" v-show="tableShow">
+                  <div id="table-title">
+                      <span class="table-title-sign" style="color: orangered">标签</span><span class="table-title-name" style="color: orangered">姓名</span><span class="table-title-address" style="color: orangered">地址详情</span><span class="table-title-phone" style="color: orangered">联系电话</span><span class="table-title-button" style="color: orangered">操作</span>
+                  </div>
+                  <div v-for="shipping in list">
+                      <div id="table-body">
+                          <span hidden id="addId">{{shipping.id}}</span><!--
+                      --><span class="table-title-sign">{{shipping.sign}}</span><!--
+                      --><span class="table-title-name">{{shipping.name}}</span><!--
+                      --><span class="table-title-address">{{shipping.address}}</span><!--
+                      --><span class="table-title-phone">{{shipping.phone}}</span><!--
+                      --><span class="table-title-button">
+                          <span class="table-title-button-btn" @click="updateAddress($event)">修改</span>
+                          <span class="table-title-button-btn" @click="deleteAddress($event)">删除</span>
+                          <span class="table-title-button-btn" @click="updateDefault($event)">{{shipping.isDefaultString}}</span>
+                      </span>
+                      </div>
+                  </div>
+                  <div class="table-title-jump" style="position: relative;top: 20px;left: 400px" @click="lastPage">
+                      上一页
+                  </div>
+                  <div id="table-title-page">
+                      当前第<span style="color: red">{{pageInfo.pageNum}}</span>页&nbsp;&nbsp;&nbsp;&nbsp;共<span style="color: red">{{pageInfo.pageTotal}}</span>页
+                  </div>
+                  <div class="table-title-jump" style="position: relative;top: 20px;left: 800px" @click="nextPage">
+                      下一页
+                  </div>
+              </div>
+              <div id="system-body-table-noData" v-show="!tableShow">
+                  您还没有添加地址哦！
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            tableShow:false,
+            shipping:{
+                userId:"",
+                name:"",
+                sex:"先生",
+                address:"",
+                phone:"",
+                sign:""
+            },
+            list:{
+
+            },
+            pageInfo:{
+                pageNum:"",
+                pageTotal:""
+            }
+        },
+        created(){
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.shipping.userId = sessionStorage.getItem("userId");
+            //向后端发送请求，查询地址信息
+            let vthis = this;
+            axios.get("/shipping/findAddressByPage/"+vthis.userId+"/1",config).then(function (result){
+                if (result.data.data.list.length === 0){
+                    vthis.tableShow = false;
+                }else {
+                    vthis.list = result.data.data.list;
+                    vthis.pageInfo.pageNum = result.data.data.pageNum;
+                    vthis.pageInfo.pageTotal = result.data.data.pages;
+                    vthis.tableShow = true;
+                }
+            });
+
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            takeSex(e){
+                this.shipping.sex = e.target.value;
+            },
+            takeSign(e,val){
+                let signDiv = document.getElementsByClassName("addAddress-body-button");
+                for (let i = 0;i < 3;i++){
+                    signDiv[i].style.backgroundColor = "white";
+                }
+                signDiv[val].style.backgroundColor = "orange";
+                this.shipping.sign = e.target.innerText;
+            },
+            addAddress(){
+                let regex = /^1[3456789]\d{9}$/;
+                let vthis = this;
+                if (this.shipping.name === ""){
+                    alert("收件人姓名不能为空！");
+                }else if (this.shipping.address === ""){
+                    alert("详细地址不能为空！")
+                }else if (this.shipping.phone === ""){
+                    alert("联系电话不能为空！");
+                }else if (this.shipping.sign === ""){
+                    alert("请选择标签");
+                }else {
+                    if (!regex.test(this.shipping.phone)){
+                        alert("请填写正确的手机号！");
+                    }else {
+                        //向后端发送请求，添加地址信息
+                        axios.post("/shipping/addAddress",vthis.shipping,config).then(function (result){
+                            if (result.data.code === 20051){
+                                alert(result.data.message);
+                                window.location.href = "address.html?token="+vthis.token;
+                            }else {
+                                alert(result.data.message);
+                            }
+                        });
+                    }
+                }
+            },
+            updateDefault(e){
+                let vthis = this;
+                if (e.target.innerText === "已为默认"){
+                    alert("已经为默认地址，无需再设置！");
+                }else {
+                    axios.get("/shipping/updateDefaultAddress/"+e.target.parentNode.parentNode.firstChild.innerText+"/"+vthis.userId+"/"+vthis.pageInfo.pageNum,config).then(function (result){
+                        if (result.data.code === 20031){
+                            vthis.list = result.data.data.list;
+                            vthis.pageInfo.pageNum = result.data.data.pageNum;
+                            vthis.pageInfo.pageTotal = result.data.data.pages;
+                            vthis.tableShow = true;
+                        }else {
+                            alert("设置失败！");
+                        }
+                    });
+                }
+            },
+            lastPage(){
+                let vthis = this;
+                if (this.pageInfo.pageNum === 1){
+                    alert("当前已经为第一页！");
+                }else {
+                    this.pageInfo.pageNum--;
+                    axios.get("/shipping/findAddressByPage/"+vthis.userId+"/"+vthis.pageInfo.pageNum,config).then(function (result){
+                        if (result.data.data.list.length === 0){
+                            vthis.tableShow = false;
+                        }else {
+                            vthis.list = result.data.data.list;
+                            vthis.pageInfo.pageNum = result.data.data.pageNum;
+                            vthis.pageInfo.pageTotal = result.data.data.pages;
+                            vthis.tableShow = true;
+                        }
+                    });
+                }
+            },
+            nextPage(){
+                let vthis = this;
+                if (this.pageInfo.pageNum === this.pageInfo.pageTotal){
+                    alert("当前已经为最后一页！");
+                }else {
+                    this.pageInfo.pageNum++;
+                    axios.get("/shipping/findAddressByPage/"+vthis.userId+"/"+vthis.pageInfo.pageNum,config).then(function (result){
+                        if (result.data.data.list.length === 0){
+                            vthis.tableShow = false;
+                        }else {
+                            vthis.list = result.data.data.list;
+                            vthis.pageInfo.pageNum = result.data.data.pageNum;
+                            vthis.pageInfo.pageTotal = result.data.data.pages;
+                            vthis.tableShow = true;
+                        }
+                    });
+                }
+            },
+            updateAddress(e){
+                let vthis = this;
+                axios.get("/shipping/findAddressById/"+e.target.parentNode.parentNode.firstChild.innerText,config).then(function (result){
+                    if (result.data.code === 20061){
+                        sessionStorage.setItem("addressId",result.data.data.id);
+                        sessionStorage.setItem("addressName",result.data.data.name);
+                        sessionStorage.setItem("addressSex",result.data.data.sex);
+                        sessionStorage.setItem("addressAddress",result.data.data.address);
+                        sessionStorage.setItem("addressPhone",result.data.data.phone);
+                        sessionStorage.setItem("addressSign",result.data.data.sign);
+                        window.location.href = "updateAddress.html?token="+vthis.token;
+                    }
+                });
+            },
+            deleteAddress(e){
+                let flag = window.confirm("确定要删除这条地址吗？");
+                let vthis = this;
+                if (flag){
+                    axios.get("/shipping/deleteAddressById/"+vthis.userId+"/"+e.target.parentNode.parentNode.firstChild.innerText+"/"+vthis.pageInfo.pageNum,config).then(function (result){
+                        if (result.data.code === 20041){
+                            vthis.list = result.data.data.list;
+                            vthis.pageInfo.pageNum = result.data.data.pageNum;
+                            vthis.pageInfo.pageTotal = result.data.data.pages;
+                            vthis.tableShow = true;
+                        }
+                    });
+                }
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-backImg{
+          width: 60px;
+          height: 60px;
+          border: 1px solid black;
+          position: absolute;
+          top: 10px;
+          left: 200px;
+          cursor: pointer;
+      }
+      #system-body-displayBody{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      #foodImg{
+          width: 900px;
+          height: 430px;
+          background-color: deepskyblue;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+      }
+      #foodIntroduce{
+          width: 900px;
+          height: 396px;
+          position: relative;
+          top: 20px;
+          background-color: deepskyblue;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+          padding-top: 30px;
+      }
+      .foodDetail{
+          position: relative;
+          left: 20px;
+          margin-top: 20px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" style="background-color: darkgray" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function"  @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+               <div id="system-body-backImg" @click="back">
+                   <img src="/img/back.jpg" alt="图片无法显示" width="60" height="60">
+               </div>
+              <div id="system-body-displayBody">
+                   <div id="foodImg">
+                       <img :src="foodJson.image" alt="图片无法显示" width="900" height="250" style="border-bottom: 2px solid black">
+                       <div>
+                           <div style="color: red;font-size: 25px;position: relative;left: 20px">{{foodJson.name}}</div>
+                           <div style="position: relative;left: 20px;top:10px;background-color: dodgerblue;width: 50px;height: 20px;border-radius: 4px;text-align: center;line-height: 20px;display: inline-block">
+                               {{foodJson.weight}}
+                           </div>
+                           <div style="position: relative;left: 30px;top:10px;background-color: dodgerblue;width: 50px;height: 20px;border-radius: 4px;text-align: center;line-height: 20px;display: inline-block">
+                               {{foodJson.mouthFeel}}
+                           </div>
+                           <div style="position: relative;left: 20px;top: 20px">
+                               月售量<span style="color: red">{{foodJson.num}}</span>
+                           </div>
+                           <div style="color: red;position: relative;left: 20px;top: 30px;font-size: 20px">
+                               ￥<span style="font-size: 30px">{{foodJson.price}}</span>
+                           </div>
+                       </div>
+                   </div>
+                  <div id="foodIntroduce">
+                      <div class="foodDetail">
+                          主料：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.chargeMixture}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          凉热：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.temperature}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          荤素：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.meatAndVegetables}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          分量：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.weight}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          口味：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.mouthFeel}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          种类：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{kindName}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          制作方法：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.method}}</span>
+                      </div>
+                      <div class="foodDetail">
+                          制作时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{{foodJson.minute}}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            foodJson:{
+
+            },
+            kindName:"",
+        },
+        created(){
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            let foodDetailId = sessionStorage.getItem("foodDetailId");
+            let vthis = this;
+            //向后端发送请求
+            axios.get("/food/findFoodDetailById/"+foodDetailId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.foodJson = result.data.data.food;
+                    vthis.kindName = result.data.data.kindName;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "orderFood.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

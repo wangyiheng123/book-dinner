@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightblue;
+      }
+      #locationImg{
+          width: 40px;
+          height: 40px;
+          background-color: lightblue;
+      }
+      #system-body-locationImg{
+          position: relative;
+          left: 1400px;
+          width: 160px;
+          height: 50px;
+      }
+      #loadImg{
+          width: 50px;
+          height: 40px;
+          background-color: lightblue;
+      }
+      #index-body{
+          width: 920px;
+          height: 824px;
+          overflow: auto;
+          position: relative;
+          left: 400px;
+      }
+      ul{
+          padding: 0;
+          margin: 0;
+          list-style: none;
+      }
+      #rolling-advertising{
+          width: 900px;
+          height: 300px;
+          border: 1px solid black;
+          position: relative;
+          /*left: 400px;*/
+          overflow: hidden;
+      }
+      .food-list{
+          width: 900px;
+          height: 150px;
+          border: 1px solid black;
+          position: relative;
+          /*left: 400px;*/
+          cursor: pointer;
+          background-color: orange;
+      }
+      #rolling-advertising ul{
+          width: 100000px;
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          transition: all 1s;
+      }
+      #rolling-advertising ul li{
+          width: 900px;
+          height: 300px;
+          float: left;
+      }
+      #rolling-advertising ul img{
+          width: 900px;
+          height: 300px;
+      }
+      .prev{
+          width: 35px;
+          height: 50px;
+          position: absolute;
+          left: 0px;
+          top: 50%;
+          margin-top: -25px;
+          cursor: pointer;
+      }
+      .next{
+          width: 35px;
+          height: 50px;
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          margin-top: -25px;
+          cursor: pointer;
+      }
+      .prev img{
+          width: 35px;
+          height: 50px;
+      }
+      .next img{
+          width: 35px;
+          height: 50px;
+      }
+      .shop-img{
+          width: 100px;
+          height: 100px;
+          border: 1px solid red;
+          position: relative;
+          top: 23px;
+          left: 60px;
+      }
+      .shop-name{
+          width: 400px;
+          height: 50px;
+          position: relative;
+          top: -80px;
+          left: 190px;
+          text-align: center;
+          line-height: 50px;
+          font-weight: bold;
+          font-size: 20px;
+      }
+      .shop-sign{
+          width: 600px;
+          height: 30px;
+          position: relative;
+          left: 190px;
+          top: -60px;
+          text-align: center;
+          line-height: 30px;
+          font-size: 18px;
+          font-family: 华文新魏,serif;
+      }
+      .shop-score{
+          width: 50px;
+          height: 20px;
+          position: relative;
+          top: -152px;
+          left: 620px;
+          text-align: center;
+          line-height: 20px;
+      }
+      .shop-num{
+          width: 100px;
+          height: 20px;
+          position: relative;
+          top: -172px;
+          left: 675px;
+          text-align: center;
+          line-height: 20px;
+      }
+      .shop-cut{
+          position: absolute;
+          top:29px;
+          left: 671px;
+      }
+      .shop-img img{
+          width: 100px;
+          height: 100px;
+      }
+      .shop-location{
+          width: 400px;
+          height: 30px;
+          position: absolute;
+          left: 190px;
+          top: 60px;
+          text-align: center;
+          line-height: 30px;
+          font-size: 15px;
+          font-family: 华文仿宋,serif;
+          color: mediumspringgreen;
+      }
+      .shop-minute{
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          left: 620px;
+          top: 70px;
+      }
+      .shop-distance{
+          width: 100px;
+          height: 20px;
+          position: absolute;
+          left: 690px;
+          top: 70px;
+      }
+      #system-body-filter{
+          width: 400px;
+          height: 400px;
+          position: absolute;
+      }
+      #system-body-filter-btn{
+          width: 130px;
+          height: 40px;
+          border: 1px solid black;
+          position: relative;
+          left: 270px;
+          text-align: center;
+          border-radius: 3px;
+          line-height: 40px;
+          background-color: orange;
+          cursor: pointer;
+      }
+      #system-body-filter-btn:hover{
+          background-color: darkorange;
+      }
+      .system-body-filter-filter{
+          width: 130px;
+          height: 30px;
+          border: 1px solid black;
+          margin-top: 25px;
+          position: relative;
+          left: 270px;
+          text-align: center;
+          border-radius: 10%;
+          line-height: 30px;
+          background-color: lightgray;
+          cursor: pointer;
+      }
+      .system-body-filter-filter:hover{
+          background-color: darkgray;
+      }
+      #system-body-search{
+          width: 450px;
+          height: 50px;
+          position: absolute;
+          top: 0px;
+          left: 850px;
+      }
+      #system-body-search input{
+          width: 300px;
+          height: 30px;
+          position: relative;
+          left: 150px;
+          top: 10px;
+      }
+      #system-body-search img{
+          width: 30px;
+          height: 30px;
+          position: relative;
+          top: -19px;
+          left: 115px;
+          cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="system-body-locationImg" @click="getLocalPath" >
+                  <img src="/img/location.jpg" alt="图片无法显示" id="locationImg">
+                  <span style="position: relative;top: -6px;color: blue" v-show="imgShow">{{localPath}}</span>
+                  <img src="/img/load.jpg" alt="图片无法显示" v-show="!imgShow" id="loadImg">
+              </div>
+              <div id="system-body-search">
+                  <label>
+                      <input type="search" v-model="searchMessage" placeholder="请填写关键字">
+                  </label>
+                  <div @click="search">
+                      <img src="/img/search.jpg" alt="图片无法显示">
+                  </div>
+              </div>
+              <!--筛选-->
+              <div id="system-body-filter">
+                  <div id="system-body-filter-btn" @click="filter">
+                      筛选
+                  </div>
+                  <div class="system-body-filter-filter" v-show="filterShow" @click="filterScore">
+                      按评分排序
+                  </div>
+                  <div class="system-body-filter-filter" v-show="filterShow" @click="filterDistance">
+                      按距离排序
+                  </div>
+                  <div class="system-body-filter-filter" v-show="filterShow" @click="filterMinute">
+                      按配送时间排序
+                  </div>
+                  <div class="system-body-filter-filter" v-show="filterShow" @click="filterNum">
+                      按月售量排序
+                  </div>
+                  <div class="system-body-filter-filter" v-show="filterShow" @click="filterNone">
+                      恢复原排序
+                  </div>
+              </div>
+              <div id="index-body">
+                  <div id="rolling-advertising">
+                      <ul id="rolling-advertising-ul">
+                          <li><img src="/img/cate2.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate8.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate3.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate4.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate5.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate6.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate7.jpg" alt="图片无法显示"></li>
+                          <li><img src="/img/cate1.jpg" alt="图片无法显示"></li>
+                      </ul>
+                      <div class="prev" id="prev" onclick="prev()">
+                          <img src="/img/preBtn.jpg" alt="图片无法显示">
+                      </div>
+                      <div class="next" id="next" onclick="next()">
+                          <img src="/img/nextBtn.jpg" alt="图片无法显示">
+                      </div>
+                  </div>
+                  <div v-for="shop in list">
+                      <div class="food-list" @click="jumpOrderFood($event)">
+                          <span hidden class="shopId">{{shop.id}}</span>
+                          <div class="shop-img" style="pointer-events: none">
+                              <img :src="shop.image" alt="图片无法显示">
+                          </div>
+                          <div class="shop-minute" style="pointer-events: none">
+                              <span style="color: red">{{shop.minute}}</span>分钟
+                          </div>
+                          <div class="shop-distance" style="pointer-events: none">
+                              <span style="color: red">{{shop.distance}}</span>km
+                          </div>
+                          <div class="shop-location" style="pointer-events: none">
+                              {{shop.location}}
+                          </div>
+                          <div class="shop-name" style="pointer-events: none">
+                              {{shop.name}}
+                          </div>
+                          <div class="shop-sign" style="pointer-events: none">
+                              "{{shop.sign}}"
+                          </div>
+                          <div class="shop-score" style="pointer-events: none">
+                              <span style="color: red">{{shop.score}}</span>分
+                          </div><span class="shop-cut" style="pointer-events: none">|</span>
+                          <div class="shop-num" style="pointer-events: none">
+                              月售<span style="color: red">{{shop.num}}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            cityId:"",
+            filterShow:false,
+            token:"",
+            localPath:"请定位",
+            imgShow:true,
+            advertising:"/img/cate1.jpg",
+            searchMessage:"",
+            list:{
+
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.getLocalPath();
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            getLocalPath(){
+                let vthis = this;
+                vthis.imgShow = false;
+                //定位城市
+                setTimeout(function (){
+                    axios.get("/shipping/getLocalAddress",config).then(function (result){
+                        if (result.data.code === 400401){
+                            vthis.imgShow = true;
+                            vthis.localPath = result.data.data.city;
+                            vthis.cityId = result.data.data.id;
+                        }else {
+                            alert(result.data.message);
+                        }
+                    });
+                },1000);
+                //根据定位的城市查询店铺
+                setTimeout(function (){
+                    axios.get("/shop/findShopByCityId/"+vthis.cityId,config).then(function (result){
+                        if (result.data.code === 20061){
+                            vthis.list = result.data.data;
+                        }else {
+                            alert(result.data.message);
+                        }
+                    });
+                },2000);
+            },
+            filter(){
+                this.filterShow = !this.filterShow;
+            },
+            filterScore(){
+                let vthis = this;
+                axios.get("/shop/findShopOrderByScore/"+vthis.cityId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.list = result.data.data;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            filterDistance(){
+                let vthis = this;
+                axios.get("/shop/findShopOrderByDistance/"+vthis.cityId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.list = result.data.data;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            filterMinute(){
+                let vthis = this;
+                axios.get("/shop/findShopOrderByMinute/"+vthis.cityId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.list = result.data.data;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            filterNum(){
+                let vthis = this;
+                axios.get("/shop/findShopOrderByNum/"+vthis.cityId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.list = result.data.data;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            filterNone(){
+                let vthis = this;
+                axios.get("/shop/findShopByCityId/"+vthis.cityId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.list = result.data.data;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            search(){
+                let vthis = this;
+                if (vthis.searchMessage === ""){
+                    alert("请填写要搜索的关键字！")
+                }else {
+                    axios.get("/shop/findShopByKey/"+vthis.cityId+"/"+vthis.searchMessage,config).then(function (result){
+                        if (result.data.code === 20061){
+                            vthis.list = result.data.data;
+                        }else {
+                            alert(result.data.message);
+                        }
+                    });
+                }
+            },
+            jumpOrderFood(e){
+                sessionStorage.setItem("shopId",e.target.firstChild.innerText);
+                window.location.href = "orderFood.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+<script>
+    let index = 0;
+    function refresh(){
+        if (index < 0){
+            index = 7;
+        }else if (index > 7){
+            index = 0;
+        }
+        //获取轮播框元素
+        let carousel = document.getElementById("rolling-advertising");
+        //获取ul元素
+        let ul = document.getElementById("rolling-advertising-ul");
+        //获取轮播框宽度
+        let width = getComputedStyle(carousel).width;
+        width = Number(width.slice(0,-2));
+        ul.style.left = index * width * -1 + 'px';
+    }
+    function prev(){
+        index--;
+        refresh();
+        //重置自动滚动
+        clearInterval(timer);
+        timer = createAuto();
+    }
+    function createAuto(){
+        return setInterval(() => {
+            index++;
+            refresh();
+        },3000);
+    }
+    let timer = createAuto();
+    function next(){
+        index++;
+        refresh();
+        //重置自动滚动
+        clearInterval(timer);
+        timer = createAuto();
+    }
+    refresh();
+</script>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #pieKindColor{
+          width: 150px;
+          height: 400px;
+          position: absolute;
+          left: 600px;
+          top: 80px;
+      }
+      #pieCanvas{
+          position: relative;
+          left: 300px;
+          top: 30px;
+      }
+      .colorDiv{
+          width: 30px;
+          height: 10px;
+          margin-top: 10px;
+          display: inline-block;
+      }
+      .colorSpan{
+          display: inline-block;
+          position: relative;
+      }
+      .lineCanvas{
+          width: 300px;
+          height: 200px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+               <canvas id="pieCanvas" width="300" height="400">
+
+               </canvas>
+              <div id="pieKindColor">
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: red">
+
+                      </div>
+                      <span class="colorSpan">川菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: orange">
+
+                      </div>
+                      <span class="colorSpan">鲁菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: yellow">
+
+                      </div>
+                      <span class="colorSpan">粤菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: green">
+
+                      </div>
+                      <span class="colorSpan">苏菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: blue">
+
+                      </div>
+                      <span class="colorSpan">浙菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: purple">
+
+                      </div>
+                      <span class="colorSpan">闽菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: aqua">
+
+                      </div>
+                      <span class="colorSpan">湘菜</span>
+                  </div>
+                  <div class="kindColor">
+                      <div class="colorDiv" style="background-color: lawngreen">
+
+                      </div>
+                      <span class="colorSpan">徽菜</span>
+                  </div>
+              </div>
+              <div style="width: 900px;height: 400px;position: absolute;left: 50px;">
+                  <canvas id="barCanvas">
+
+                  </canvas>
+              </div>
+              <div style="width: 300px;height: 800px;position: absolute;left: 1000px;top: 50px;display: inline-block">
+                  <div style="position: absolute;left: 130px;top: 30px">
+                      川菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 230px">
+                      鲁菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 430px">
+                      粤菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 630px">
+                      苏菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+              </div>
+              <div style="width: 300px;height: 800px;position: absolute;left: 1350px;top: 50px;display: inline-block">
+                  <div style="position: absolute;left: 130px;top: 30px">
+                      浙菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 230px">
+                      闽菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 430px">
+                      湘菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+                  <div style="position: absolute;left: 130px;top: 630px">
+                      徽菜
+                  </div>
+                  <div class="lineCanvas">
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"></script>
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:""
+        },
+        created(){
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+<script>
+    let kindData = [];
+    let array1 = [];
+    let array2 = [];
+    let array3 = [];
+    let array4 = [];
+    let array5 = [];
+    let array6 = [];
+    let array7 = [];
+    let array8 = [];
+    axios.get("/kind/findAllKind",config).then(function (result){
+        if (result.data.code === 20061){
+            kindData = result.data.data;
+        }else {
+            alert("没有查询到！");
+        }
+    });
+    axios.get("/weekData/findAllWeekData",config).then(function (result){
+        array1 = result.data.data.array1;
+        array2 = result.data.data.array2;
+        array3 = result.data.data.array3;
+        array4 = result.data.data.array4;
+        array5 = result.data.data.array5;
+        array6 = result.data.data.array6;
+        array7 = result.data.data.array7;
+        array8 = result.data.data.array8;
+    });
+    setTimeout(function (){
+        let canvas = document.getElementsByTagName("canvas")[0];
+        if (canvas.getContext){
+            let context = canvas.getContext("2d");
+            context.fillStyle = "lightskyblue";
+            context.fillRect(0,0,canvas.width,canvas.height);
+            let data = kindData;
+            console.log(data);
+            let colors = ["red","orange","yellow","green","blue","purple","aqua","lawngreen"];
+            let total = 0;
+            for (let i = 0;i < data.length;i++){
+                total += data[i];
+            }
+            let preAngle = 0;
+            for (let i = 0;i < data.length;i++){
+                let fraction = data[i] / total;
+                let angle = preAngle + fraction * Math.PI * 2;
+                context.fillStyle = colors[i];
+                context.beginPath();
+                context.moveTo(150,150);
+                context.arc(150,150,100,preAngle,angle);
+                context.closePath();
+                context.fill();
+                context.strokeStyle = "black";
+                context.stroke();
+                preAngle = angle;
+            }
+        }
+    },1000);
+</script>
+<script>
+    setTimeout(function (){
+        let ctx = document.getElementById("barCanvas").getContext("2d");
+        //配置柱状图数据
+        let barCanvas = new Chart(ctx,{
+            type:'bar',
+            data: {
+                labels:["川菜","鲁菜","粤菜","苏菜","浙菜","闽菜","湘菜","苏菜"], //标题
+                datasets:[{
+                    label:"月售量",//设置数据标题
+                    data:kindData, //设置柱状图Y轴数据
+                    backgroundColor:[
+                        "red","orange","yellow","green","blue","purple","aqua","lawngreen"
+                    ],
+                    borderColor:[
+                        "red","orange","yellow","green","blue","purple","aqua","lawngreen"
+                    ],
+                    borderWidth:1 //边框宽度
+                }]
+            }
+        })
+    },1500);
+</script>
+<script>
+    function line(lineDOM,data){
+        let lineCanvas = lineDOM;
+        let option = {
+            xAxis:{
+                type: 'category',
+                data:['周一','周二','周三','周四','周五','周六','周日']
+            },
+            yAxis:{
+                type:'value'
+            },
+            series:[{
+                data:data,
+                type:'line'
+            }]
+        };
+        lineCanvas.setOption(option);
+    }
+    setTimeout(function (){
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[0]),array1);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[1]),array2);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[2]),array3);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[3]),array4);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[4]),array5);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[5]),array6);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[6]),array7);
+        line(echarts.init(document.getElementsByClassName("lineCanvas")[7]),array8);
+    },1500);
+</script>
+</html>

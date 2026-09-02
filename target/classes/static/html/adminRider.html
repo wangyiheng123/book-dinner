@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex" >
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" style="background-color: darkgray" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="system-body-container" style="overflow: auto">
+                  <div style="width: 880px;height: 100px;text-align: center;line-height: 100px;font-size: 30px;font-weight: bold">
+                      添加骑手
+                  </div>
+                  <div style="width: 880px;height: 400px;background-color: deepskyblue;border-radius: 10px;">
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 65px;text-align: center">
+                          骑手姓名：<input type="text" name="name" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="rider.name">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 85px;text-align: center">
+                          骑手年龄：<input type="text" name="age" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="rider.age">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 105px;text-align: center">
+                          联系电话：<input type="text" name="phone" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="rider.phone">
+                      </div>
+                      <div style="width: 160px;height: 50px;border-radius: 10px;background-color: orange;position: relative;left: 360px;top: 145px;text-align: center;line-height: 50px;font-weight: bold;font-size: 20px;cursor: pointer" @click="addRider">
+                          添加骑手
+                      </div>
+                  </div>
+                  <div v-show="riderShow" style="width: 880px;height: auto;min-height: 130px;position: relative;top: 10px">
+                      <div v-for="rider in riderList">
+                          <div style="width: 880px;height: 130px;border-radius: 10px;margin-top: 10px;background-color: deepskyblue;cursor: pointer" @click.self="riderDetail($event)">
+                              <span hidden>{{rider.id}}</span>
+                              <div style="width: 90px;height: 90px;border-radius: 50%;border: 1px solid black;position: relative;left: 30px;top: 20px">
+                                  <img src="/img/riderImage.png" alt="图片无法显示" width="90" height="90" style="clip-path: circle(50%)">
+                              </div>
+                              <div style="width: 200px;height: 35px;line-height: 35px;font-weight: bold;font-size: 25px;position: relative;left: 140px;top: -70px">
+                                  {{rider.name}}&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;font-weight: normal">{{rider.age}}岁</span>
+                              </div>
+                              <div style="width: 300px;height: 35px;line-height: 35px;font-size: 20px;font-weight: bold;position: relative;left: 140px;top: -60px">
+                                  联系电话：<span style="font-weight: normal">{{rider.phone}}</span>
+                              </div>
+                              <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 670px;top: -90px;" @click.stop="deleteRider($event)">
+                                  删除骑手
+                              </div>
+                              <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: orange;cursor: pointer;position: relative;left: 670px;top: -180px;" @click.stop="updateRider($event)">
+                                  修改信息
+                              </div>
+                              <span hidden>{{rider.name}}</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div v-show="!riderShow" style="width: 880px;height: 130px;position: relative;top: 10px;background-color: deepskyblue;border-radius: 10px;text-align: center;font-size: 30px;line-height: 130px;font-weight: bold">
+                      还没有添加骑手信息！
+                  </div>
+              </div>
+          </div>
+          <div style="width: 880px;height: 400px;background-color: gray;border-radius: 10px;position: absolute;left: 600px;top: 230px" v-show="updateDivShow">
+              <div style="width: 30px;height: 30px;border: 1px solid black;border-radius: 5px;position: absolute;left: 810px;top: 20px;cursor: pointer" @click="cancel">
+                  <img src="/img/100.jpg" width="30" height="30" style="border-radius: 5px">
+              </div>
+              <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 65px;text-align: center">
+                  骑手姓名：<input type="text" name="name" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: gray;font-weight: normal" v-model="update.name">
+              </div>
+              <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 85px;text-align: center">
+                  骑手年龄：<input type="text" name="age" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: gray;font-weight: normal" v-model="update.age">
+              </div>
+              <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 105px;text-align: center">
+                  联系电话：<input type="text" name="phone" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: gray;font-weight: normal" v-model="update.phone">
+              </div>
+              <div style="width: 160px;height: 50px;border-radius: 10px;background-color: orange;position: relative;left: 360px;top: 145px;text-align: center;line-height: 50px;font-weight: bold;font-size: 20px;cursor: pointer" @click="toUpdateRider">
+                  修改骑手
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            riderList:{
+
+            },
+            riderShow:false,
+            rider:{
+                name:"",
+                age:"",
+                phone:""
+            },
+            updateDivShow:false,
+            update:{
+                id:"",
+                name:"",
+                age:"",
+                phone:""
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/rider/findAllRider",config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.riderShow = true;
+                    vthis.riderList = result.data.data;
+                }else {
+                    vthis.riderShow = false;
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            deleteRider(e){
+                let vthis = this;
+                let flag = window.confirm("确定要删除该骑手的信息吗？");
+                if (flag){
+                    axios.get("/rider/deleteRiderById/"+e.target.parentNode.firstElementChild.innerText,config).then(function (result) {
+                        if (result.data.code === 20060){
+                            vthis.riderShow = false;
+                        }else if (result.data.code === 20041){
+                            vthis.riderShow = true;
+                            vthis.riderList = result.data.data;
+                        }else {
+                            alert(result.data.message);
+                        }
+                    });
+                }
+            },
+            addRider(){
+                let vthis = this;
+                let regex = /^1[3456789]\d{9}$/;
+                if (vthis.rider.name === ""){
+                    alert("请填写骑手的姓名！");
+                    return;
+                }
+                if (vthis.rider.age === ""){
+                    alert("请填写骑手的年龄！");
+                    return;
+                }
+                if (isNaN(vthis.rider.age)){
+                    alert("请填写正确的年龄！");
+                    return;
+                }
+                if (vthis.rider.phone === ""){
+                    alert("请填写骑手的手机号！");
+                    return;
+                }
+                if (!regex.test(vthis.rider.phone)){
+                    alert("请填写正确的手机号！");
+                    return;
+                }
+                //向后端发送请求
+                axios.post("/rider/addRider",vthis.rider,config).then(function (result) {
+                    if (result.data.code === 20051){
+                        alert(result.data.message);
+                        vthis.riderShow = true;
+                        vthis.riderList = result.data.data;
+                        vthis.rider.name = "";
+                        vthis.rider.age = "";
+                        vthis.rider.phone = "";
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            updateRider(e){
+                let vthis = this;
+                vthis.update.id = e.target.parentNode.firstElementChild.innerText;
+                //根据骑手的Id查询骑手的信息
+                axios.get("/rider/findRiderById/"+e.target.parentNode.firstElementChild.innerText,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        vthis.update.name = result.data.data.name;
+                        vthis.update.age = result.data.data.age;
+                        vthis.update.phone = result.data.data.phone;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+                vthis.updateDivShow = true;
+                let systemBody = document.getElementById("system-body");
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+            },
+            toUpdateRider(){
+                let vthis = this;
+                let regex = /^1[3456789]\d{9}$/;
+                if (vthis.update.name === ""){
+                    alert("请填写骑手的姓名！");
+                    return;
+                }
+                if (vthis.update.age === ""){
+                    alert("请填写骑手的年龄！");
+                    return;
+                }
+                if (isNaN(vthis.update.age)){
+                    alert("请填写正确的年龄！");
+                    return;
+                }
+                if (vthis.update.phone === ""){
+                    alert("请填写骑手的手机号！");
+                    return;
+                }
+                if (!regex.test(vthis.update.phone)){
+                    alert("请填写正确的手机号！");
+                    return;
+                }
+                //像后端发送修改请求
+                axios.post("/rider/updateRider",vthis.update,config).then(function (result) {
+                    alert(result.data.message);
+                    if (result.data.code === 20031){
+                        vthis.riderList = result.data.data;
+                        vthis.cancel();
+                    }else {
+                        vthis.cancel();
+                    }
+                });
+            },
+            cancel(){
+                let systemBody = document.getElementById("system-body");
+                this.updateDivShow = false;
+                systemBody.style.filter = "blur(0px)";
+                systemBody.style.pointerEvents = "";
+            },
+            riderDetail(e){
+                sessionStorage.setItem("adminRiderId",e.target.firstElementChild.innerText);
+                sessionStorage.setItem("adminRiderName",e.target.lastElementChild.innerText);
+                window.location.href = "adminRiderDetail.html?token="+this.token;
+            }
+        }
+    });
+</script>
+</html>

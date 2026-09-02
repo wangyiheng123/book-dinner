@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex" >
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div id="system-body-container" style="overflow: auto">
+                  <div style="width: 880px;height: 100px;text-align: center;line-height: 100px;font-weight: bold;font-size: 30px;">
+                      <span style="color: gray">{{shopName}}</span>上架菜品
+                  </div>
+                  <div style="width: 880px;height: 820px;background-color: deepskyblue;border-radius: 10px;">
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 15px">
+                          菜品名称：<input type="text" name="name" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.name">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 15px">
+                          菜品定价：<input type="text" name="price" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.price">元
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 15px">
+                          菜品种类：<input readonly type="text" name="kind" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="kindName">
+                          <div style="width: 30px;height: 30px;text-align: center;line-height: 30px;font-size: 20px;font-weight: bold;position: absolute;left: 402px;top: 10px;cursor: pointer" @click="kindDisplay">
+                              v
+                          </div>
+                          <div style="width: 300px;height: 100px;border: 1px solid black;position: absolute;left: 101px;top: 37px;overflow: auto" v-show="kindShow">
+                              <div v-for="kind in kindList">
+                                  <span hidden>{{kind.id}}</span>
+                                  <div style="width: 280px;height: 30px;line-height: 30px;border-bottom: 1px solid black;font-size: 20px;cursor: pointer" @click="addKind($event)">
+                                      {{kind.kindName}}
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          主要成分：<input type="text" name="chargeMixture" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.chargeMixture">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          菜品口味：<input type="text" name="mouthFeel" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.mouthFeel">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          菜品冷热：<input type="text" name="temperature" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.temperature">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          菜品荤素：<input readonly type="text" name="meatAndVegetable" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.meatAndVegetables">
+                          <div id="meat" style="width: 100px;height: 30px;background-color: lightgray;text-align: center;line-height: 30px;position: absolute;left: 450px;top: 15px;cursor: pointer;font-weight: normal;font-size: 18px;border-radius: 10px" @click="meat">
+                              荤
+                          </div>
+                          <div id="vegetable" style="width: 100px;height: 30px;background-color: lightgray;text-align: center;line-height: 30px;position: absolute;left: 580px;top: 15px;cursor:pointer;font-weight: normal;font-size: 18px;border-radius: 10px" @click="vegetable">
+                              素
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          制作工艺：<input type="text" name="method" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.method">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          制作时间：<input type="text" name="minute" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.minute">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          菜品份量：<input type="text" name="weight" style="outline: none;width: 300px;height: 20px;color:black;font-size: 20px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;font-weight: normal" v-model="food.weight">
+                      </div>
+                      <div style="width: 820px;height: 50px;line-height: 50px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 115px">
+                          菜品图片：
+                          <div id="foodImage" style="width: 120px;height: 120px;border-radius: 10px;border: 1px solid black;text-align: center;line-height: 120px;font-size: 25px;position: relative;left: 100px;cursor: pointer;background-size: 100% 100%">
+                              +
+                          </div>
+                          <form id="fileForm" enctype="multipart/form-data">
+                              <input type="file" id="uploadFile" accept="image/*" name="file" style="display: none" @change="selectImage($event)">
+                          </form>
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: 75px;">
+                      <div style="width: 150px;height: 40px;border-radius: 10px;background-color: orange;text-align: center;line-height: 40px;font-size: 20px;font-weight: bold;position: relative;left: 365px;top: 17px;cursor: pointer" @click="addFood">
+                          添加菜品
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            shopId:"",
+            kindShow:false,
+            shopName:"",
+            kindName:"",
+            kindList:{
+
+            },
+            food:{
+                userId:"",
+                shopId:"",
+                name:"",
+                price:"",
+                kindId:"",
+                chargeMixture:"",
+                mouthFeel:"",
+                temperature:"",
+                meatAndVegetables:"",
+                method:"",
+                minute:"",
+                weight:""
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.shopId = sessionStorage.getItem("upFoodShopId");
+            axios.get("/shop/findNameById/"+vthis.shopId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.shopName = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+            axios.get("/kind/findAllKindIdAndName",config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.kindList = result.data.data;
+                }else {
+                    alert("没有查到种类信息！");
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            kindDisplay(){
+                this.kindShow = !this.kindShow;
+            },
+            addKind(e){
+                this.food.kindId = e.target.previousElementSibling.innerText;
+                this.kindName = e.target.innerText;
+                this.kindShow = false;
+            },
+            meat(){
+                let meat = document.getElementById("meat");
+                let vegetable = document.getElementById("vegetable");
+                meat.style.backgroundColor = "gray";
+                vegetable.style.backgroundColor = "lightgray";
+                this.food.meatAndVegetables = "荤";
+            },
+            vegetable(){
+                let meat = document.getElementById("meat");
+                let vegetable = document.getElementById("vegetable");
+                meat.style.backgroundColor = "lightgray";
+                vegetable.style.backgroundColor = "gray";
+                this.food.meatAndVegetables = "素";
+            },
+            selectImage(e){
+                let fd = new FormData();
+                let vthis = this;
+                fd.append('file',e.target.files[0]);
+                fd.append('userId',vthis.userId);
+                fd.append('shopId',vthis.shopId);
+                axios.post("/file/uploadFoodImage",fd,config).then(function (result) {
+                    if (result.data.code === 20091){
+                        let foodImage = document.getElementById("foodImage");
+                        foodImage.innerText = "";
+                        foodImage.style.backgroundImage = "url("+result.data.data+")";
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            addFood(){
+                let vthis = this;
+                let foodImage = document.getElementById("foodImage");
+                vthis.food.shopId = vthis.shopId;
+                vthis.food.userId = vthis.userId;
+                if (vthis.food.name === ""){
+                    alert("菜品名称不能为空！");
+                    return;
+                }
+                if (vthis.food.price === ""){
+                    alert("菜品价格不能为空！");
+                    return;
+                }
+                if (vthis.kindName === ""){
+                    alert("菜品种类不能为空！");
+                    return;
+                }
+                if (vthis.food.chargeMixture === ""){
+                    alert("主要成分不能为空！");
+                    return;
+                }
+                if (vthis.food.mouthFeel === ""){
+                    alert("菜品口味不能为空！");
+                    return;
+                }
+                if (vthis.food.temperature === ""){
+                    alert("菜品温度不能为空！");
+                    return;
+                }
+                if (vthis.food.meatAndVegetables === ""){
+                    alert("菜品荤素不能为空！");
+                    return;
+                }
+                if (vthis.food.method === ""){
+                    alert("制作工艺不能为空！");
+                    return;
+                }
+                if (vthis.food.minute === ""){
+                    alert("制作时间不能为空！");
+                    return;
+                }
+                if (vthis.food.weight === ""){
+                    alert("菜品分量不能为空！");
+                    return;
+                }
+                if (foodImage.innerText === "+"){
+                    alert("请上传菜品图片！");
+                    return;
+                }
+                axios.post("/food/addFood",vthis.food,config).then(function (result) {
+                    alert(result.data.message);
+                    if (result.data.code === 20051){
+                        sessionStorage.setItem("adminShopId",vthis.shopId);
+                        window.location.href = "adminShopDetail.html?token="+vthis.token;
+                    }
+                });
+            }
+        }
+    });
+</script>
+<script>
+    let upload = document.getElementById("uploadFile");
+    let foodImage = document.getElementById("foodImage");
+    foodImage.addEventListener('click',function () {
+       upload.click();
+    });
+</script>
+</html>

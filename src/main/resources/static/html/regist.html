@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        #login-header{
+            background-color: #d2611e;
+            height: 150px;
+        }
+        #login-header-image img{
+            width: 130px;
+            height: 130px;
+            position: relative;
+            left: 400px;
+            top: 15px;
+        }
+        #container{
+            height: 400px;
+            position: relative;
+            top: 5px;
+        }
+        #bodyImage img{
+            width: 1434px;
+            height: 550px;
+        }
+        #container{
+            width: 453px;
+            height: 550px;
+            position: absolute;
+            top: 158px;
+            left: 1442px;
+        }
+        #container-header{
+            height: 80px;
+            color: white;
+            font-size: 40px;
+            font-family: 华文仿宋,serif;
+            text-align: center;
+            background-color: blue;
+            line-height: 80px;
+        }
+        #container-body{
+            background-color: yellow;
+            height: 300px;
+        }
+        #container-end{
+            background-color: green;
+            height: 170px;
+            text-align: center;
+            line-height: 170px;
+        }
+        #login-userName label input{
+            width: 300px;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            top: 50px;
+        }
+        #login-password label input{
+            width: 300px;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            top: 50px;
+        }
+        #login-end{
+            height: 300px;
+            position: relative;
+            top: -4px;
+            background-color: lightskyblue;
+        }
+        #login-end img{
+            width: 150px;
+            height: 150px;
+        }
+        #firstImg{
+            position: relative;
+            top: 50px;
+        }
+        #secondImg{
+            position: relative;
+            top: 50px;
+        }
+        #thirdImg{
+            position: relative;
+            top: 50px;
+        }
+        #regist-email input{
+            width: 250px;
+            height: 30px;
+            position: relative;
+            top: 50px;
+            left: 60px;
+        }
+        #regist-checkCode input{
+            width: 250px;
+            height: 30px;
+            position: relative;
+            top: 90px;
+            left: 60px;
+        }
+        #regist-button{
+            width: 255px;
+            height: 30px;
+            background-color: white;
+            text-align: center;
+            position: relative;
+            top: 130px;
+            left: 60px;
+            border: 1px solid black;
+            line-height: 30px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        #regist-button:hover{
+            background-color: yellow;
+        }
+        #gainCode-button{
+            width: 100px;
+            height: 33px;
+            background-color: lightskyblue;
+            position: relative;
+            top: 52px;
+            left: 60px;
+            border: 1px solid black;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 33px;
+        }
+        #gainCode-button:hover{
+            background-color: deepskyblue;
+        }
+        #gainCode-minute{
+            width: 100px;
+            height: 33px;
+            background-color: lightgray;
+            position: relative;
+            top: 52px;
+            left: 60px;
+            border: 1px solid black;
+            border-radius: 3px;
+            text-align: center;
+            line-height: 33px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <!--头部-->
+      <div id="login-header">
+        <!--头部图片-->
+        <div id="login-header-image">
+          <img src="/img/food1.jpg" alt="图片无法显示">
+        </div>
+        <!--头部文字-->
+        <div id="login-header-text">
+            <div style="display:inline-block;position: absolute;top: 45px;left: 750px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                食
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 850px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                全
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 950px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                食
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 1050px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                美
+            </div>
+        </div>
+      </div>
+      <!--中部-->
+      <div id="login-body">
+        <!--登录页面的图片-->
+        <div id="bodyImage">
+            <img src="/img/2.jpg" alt="图片无法显示">
+        </div>
+        <!--登录页面的具体内容-->
+        <div id="container">
+            <!--容器头部-->
+            <div id="container-header">
+                注册
+            </div>
+            <!--容器身体-->
+            <div id="container-body">
+                <div id="regist-email">
+                    <label style="display:inline-block">
+                        <input id="email" type="text" placeholder="请输入邮箱" name="email" v-model="email">
+                    </label>
+                    <span style="color: red;position: absolute;top: 168px;left: 60px">{{checkedMsg}}</span>
+                    <div id="gainCode-button" style="display: inline-block;" @click="gainCode" v-show="codeShow">
+                        获取验证码
+                    </div>
+                    <div id="gainCode-minute" style="display: inline-block;" v-show="minuteShow">
+                        {{countDown}}秒
+                    </div>
+                </div>
+                <div id="regist-checkCode">
+                    <label>
+                        <input type="text" placeholder="请输入验证码" name="checkCode" v-model="checkCode">
+                    </label>
+                </div>
+                <div id="regist-button" @click="register">
+                    注册
+                </div>
+            </div>
+            <!--容器尾部-->
+            <div id="container-end">
+                <div style="font-size: 25px;font-family: 华文仿宋,serif;height: 100px;text-align: center;">
+                   <span style="color: red;font-size: 25px">*</span>如果您已经有帐号了，请直接去<a href="login.html">登录</a>。
+                </div>
+            </div>
+        </div>
+      </div>
+      <!--尾部-->
+      <div id="login-end">
+          <!--三个图片-->
+          <div style="display:inline-block;position: relative;left: 300px">
+              <div id="firstImg">
+                  <img src="/img/health.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  健康生活
+              </div>
+          </div>
+          <div style="display:inline-block;position: relative;left: 700px">
+              <div id="secondImg">
+                  <img src="/img/server.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  热情服务
+              </div>
+          </div>
+          <div style="display:inline-block;position: relative;left: 1100px">
+              <div id="thirdImg">
+                  <img src="/img/enjoy.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  享受美食
+              </div>
+          </div>
+      </div>
+    </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let reg = new Vue({
+        el:"#app",
+        data:{
+            email:"",
+            checkCode:"",
+            checkedMsg:"",
+            chain:false,
+            codeShow:true,
+            minuteShow:false,
+            countDown:60
+        },
+        methods:{
+            gainCode(){
+                let vthis = this;
+                this.checkMail();
+                setTimeout(function (){
+                    if (vthis.chain){
+                        alert("验证码已发送！");
+                        vthis.codeShow = false;
+                        vthis.minuteShow = true;
+                        //定时器
+                        let timer = setInterval(function (){
+                            vthis.countDown--;
+                            if (vthis.countDown === 0){
+                                clearInterval(timer);
+                                vthis.codeShow = true;
+                                vthis.minuteShow = false;
+                                vthis.countDown = 60;
+                            }
+                        },1000);
+                        axios.get("/register/gainCode/"+vthis.email).then(function (result){
+                            if (result.data.code === 50080){
+                                alert(result.data.message);
+                            }
+                        });
+                    }
+                },1000);
+            },
+            register(){
+                let vthis = this;
+                this.checkMail();
+                setTimeout(function (){
+                    if (vthis.chain){
+                        axios.get("/register/userRegister/"+vthis.email+"/"+vthis.checkCode).then(function (result){
+                            if (result.data.code === 20081){
+                                alert("注册成功！用户名和密码已发送，请注意查收！");
+                                window.location.href = "login.html";
+                            }else {
+                                alert(result.data.message);
+                            }
+                        });
+                    }
+                },1000);
+            },
+            checkMail(){
+                let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/;
+                let vthis = this;
+                if (this.email === ""){
+                    vthis.chain = false;
+                    this.checkedMsg = "邮箱不能为空！";
+                }else if (!regex.test(this.email)){
+                    vthis.chain = false;
+                    this.checkedMsg = "请填写正确的邮箱！";
+                }else {
+                    axios.get("/register/existEmail/"+this.email).then(function (result){
+                        if (result.data.code === 20061){
+                            vthis.chain = false;
+                            vthis.checkedMsg = result.data.message;
+                        }else {
+                            vthis.chain = true;
+                            vthis.checkedMsg = "";
+                        }
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>

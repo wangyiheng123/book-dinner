@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        #login-header{
+            background-color: #d2611e;
+            height: 150px;
+        }
+        #login-header-image img{
+            width: 130px;
+            height: 130px;
+            position: relative;
+            left: 400px;
+            top: 15px;
+        }
+        #container{
+            height: 400px;
+            position: relative;
+            top: 5px;
+        }
+        #bodyImage img{
+            width: 1434px;
+            height: 550px;
+        }
+        #container{
+            width: 453px;
+            height: 550px;
+            position: absolute;
+            top: 158px;
+            left: 1442px;
+        }
+        #container-header{
+            height: 80px;
+            color: white;
+            font-size: 40px;
+            font-family: 华文仿宋,serif;
+            text-align: center;
+            background-color: blue;
+            line-height: 80px;
+        }
+        #container-body{
+            background-color: yellow;
+            height: 300px;
+        }
+        #container-end{
+            background-color: green;
+            height: 170px;
+            text-align: center;
+            line-height: 170px;
+        }
+        #login-userName{
+            height: 80px;
+            text-align: center;
+        }
+        #login-userName label input{
+            width: 300px;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            top: 50px;
+        }
+        #login-password{
+            height: 80px;
+            text-align: center;
+        }
+        #login-password label input{
+            width: 300px;
+            height: 35px;
+            border-radius: 5px;
+            position: relative;
+            top: 50px;
+        }
+        #login-button{
+            height: 80px;
+        }
+        #button{
+            text-align: center;
+            width: 304px;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid black;
+            position: relative;
+            line-height: 35px;
+            top: 50px;
+            left: 74px;
+            background-color: white;
+            font-family: 华文仿宋,serif;
+            font-size: 20px;
+        }
+        #button:hover{
+            background-color: yellow;
+            cursor: pointer;
+        }
+        #login-end{
+            height: 300px;
+            position: relative;
+            top: -4px;
+            background-color: lightskyblue;
+        }
+        #login-end img{
+            width: 150px;
+            height: 150px;
+        }
+        #firstImg{
+            position: relative;
+            top: 50px;
+        }
+        #secondImg{
+            position: relative;
+            top: 50px;
+        }
+        #thirdImg{
+            position: relative;
+            top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <!--头部-->
+      <div id="login-header">
+        <!--头部图片-->
+        <div id="login-header-image">
+          <img src="/img/food1.jpg" alt="图片无法显示">
+        </div>
+        <!--头部文字-->
+        <div id="login-header-text">
+            <div style="display:inline-block;position: absolute;top: 45px;left: 750px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                食
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 850px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                全
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 950px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                食
+            </div>
+            <div style="display:inline-block;position: absolute;top: 45px;left: 1050px;width: 80px;height: 80px;background-color: blue;font-family: '华文新魏',serif;font-size: 70px;color: white;text-align: center">
+                美
+            </div>
+        </div>
+      </div>
+      <!--中部-->
+      <div id="login-body">
+        <!--登录页面的图片-->
+        <div id="bodyImage">
+            <img src="/img/2.jpg" alt="图片无法显示">
+        </div>
+        <!--登录页面的具体内容-->
+        <div id="container">
+            <!--容器头部-->
+            <div id="container-header">
+                登录
+            </div>
+            <!--容器身体-->
+            <div id="container-body">
+                <div id="login-userName">
+                    <label>
+                        <input type="text" placeholder="用户名" name="userName" v-model="user.userName">
+                    </label>
+                </div>
+                <div id="login-password">
+                    <label>
+                        <input type="password" placeholder="密码" name="password" v-model="user.password">
+                    </label>
+                </div>
+                <div id="login-button">
+                    <div id="button" @click="login">
+                        登录
+                    </div>
+                </div>
+            </div>
+            <!--容器尾部-->
+            <div id="container-end">
+                <div style="font-size: 25px;font-family: 华文仿宋,serif;height: 100px;text-align: center;">
+                   <span style="color: red;font-size: 25px">*</span>如果您还没有账号，请您先去<a href="regist.html">注册</a>。
+                </div>
+            </div>
+        </div>
+      </div>
+      <!--尾部-->
+      <div id="login-end">
+          <!--三个图片-->
+          <div style="display:inline-block;position: relative;left: 300px">
+              <div id="firstImg">
+                  <img src="/img/health.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  健康生活
+              </div>
+          </div>
+          <div style="display:inline-block;position: relative;left: 700px">
+              <div id="secondImg">
+                  <img src="/img/server.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  热情服务
+              </div>
+          </div>
+          <div style="display:inline-block;position: relative;left: 1100px">
+              <div id="thirdImg">
+                  <img src="/img/enjoy.jpg" alt="图片无法显示">
+              </div>
+              <div style="position: relative;top: 50px;left:20px;font-size: 30px;font-family: 华文新魏,serif">
+                  享受美食
+              </div>
+          </div>
+      </div>
+    </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            user:{
+                userName:"",
+                password:""
+            }
+        },
+        methods:{
+            login(){
+                axios.post("/login/userLogin",this.user).then(function (result){
+                    alert(result.data.message);
+                    if (result.data.code === 600100){
+                        sessionStorage.setItem("token",result.data.data.token);
+                        sessionStorage.setItem("name",result.data.data.data.name);
+                        sessionStorage.setItem("userId",result.data.data.data.id);
+                        window.location.href = "/html/index.html?token="+ result.data.data.token;
+                    }else if (result.data.code === 600200){
+                        sessionStorage.setItem("token",result.data.data.token);
+                        sessionStorage.setItem("name",result.data.data.data.name);
+                        sessionStorage.setItem("userId",result.data.data.data.id);
+                        window.location.href = "/html/adminIndex.html?token="+ result.data.data.token;
+                    }
+                });
+            }
+        }
+    });
+</script>
+</html>

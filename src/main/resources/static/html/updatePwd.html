@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightblue;
+      }
+      .body-update{
+          width: 150px;
+          height: 40px;
+          border: 1px solid red;
+          text-align: center;
+          line-height: 40px;
+          background-color: orange;
+          cursor: pointer;
+      }
+      .body-update:hover{
+          background-color: darkorange;
+      }
+      #secondTitle{
+          width: 300px;
+          height: 50px;
+          background-image: -webkit-linear-gradient(0deg,mediumpurple 20%,red 33%,green);
+          -webkit-background-clip: text;
+          color: transparent;
+          font-family: 华文行楷, serif;
+          font-size: 40px;
+          position: relative;
+          left: 700px;
+          top: 30px;
+      }
+      #system-body-container{
+          width: 1300px;
+          height: 700px;
+          position: relative;
+          left: 200px;
+          top: 50px;
+          background-color: lightblue;
+      }
+      .system-body-container-input{
+          width: 300px;
+          height: 30px;
+      }
+      #system-body-container-button{
+          width: 420px;
+          height: 35px;
+          border:1px solid black;
+          background-color: lightgray;
+          text-align: center;
+          line-height: 35px;
+          font-size: 20px;
+          font-family: 华文仿宋,serif;
+          cursor: pointer;
+          color: black;
+          border-radius: 3px;
+      }
+      #system-body-container-button:hover{
+          background-color: darkgray;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="body-personMessage" class="body-update" style="display: inline-block;position: relative;top: 30px;left: 30px;" @click="jumpPerson">
+                  <div style="color: black;font-size: 20px;font-family: 华文新魏,serif">修改个人信息</div>
+              </div>
+              <div id="body-password" class="body-update" style="display: inline-block;position: relative;top: 30px;left: 50px;background-color: darkorange">
+                  <div style="color: black;font-size: 20px;font-family: 华文新魏,serif">修改密码</div>
+              </div>
+              <div id="secondTitle">
+                  修改密码页面
+              </div>
+              <div id="system-body-container">
+                  <div style="position: relative;left: 380px;top: 100px">
+                      <label>
+                          请输入旧密码：<input type="password" name="oldPassword" id="oldPassword" class="system-body-container-input" v-model="sendData.oldPassword" @blur="checkOldPassword">
+                      </label>
+                      <span style="color: red;font-size: 20px;">{{oldPasswordCheck}}</span>
+                  </div>
+                  <div style="position: relative;left: 380px;top: 200px">
+                      <label>
+                          请输入新密码：<input type="password" name="newPassword" id="newPassword" class="system-body-container-input" v-model="sendData.newPassword" @blur="checkNewPassword">
+                      </label>
+                      <span style="color: red;font-size: 20px;">{{newPasswordCheck}}</span>
+                  </div>
+                  <div style="position: relative;left: 380px;top: 300px">
+                      <label>
+                          请确认新密码：<input type="password" name="againPassword" id="againPassword" class="system-body-container-input" v-model="sendData.againPassword" @blur="checkAgainPassword">
+                      </label>
+                      <span style="color: red;font-size: 20px;">{{againPasswordCheck}}</span>
+                  </div>
+                  <div style="position: relative;left: 380px;top: 400px" id="system-body-container-button" @click="update">
+                      修改
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            oldPasswordCheck:"",
+            newPasswordCheck:"*以字母开头，长度在6~18之间，只能包含字符、数字和下划线",
+            againPasswordCheck:"",
+            sendData: {
+                oldPassword:"",
+                newPassword:"",
+                againPassword:""
+            },
+            checkData:{
+                oldPassword:false,
+                newPassword:false,
+                againPassword:false
+            }
+        },
+        created(){
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            jumpPerson(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            checkOldPassword(){
+                let vthis = this;
+                if (this.sendData.oldPassword === ""){
+                    this.oldPasswordCheck = "请填写之前的密码！！！";
+                    vthis.checkData.oldPassword = false;
+                }else {
+                    axios.get("/user/findPwdIsRight/"+vthis.userId+"/"+vthis.sendData.oldPassword,config).then(function (result){
+                        if (result.data.code === 20060){
+                            vthis.oldPasswordCheck = result.data.message;
+                            vthis.checkData.oldPassword = false;
+                        }else {
+                            vthis.oldPasswordCheck = "";
+                            vthis.checkData.oldPassword = true;
+                        }
+                    });
+                }
+            },
+            checkNewPassword(){
+                let regex = /^[a-zA-Z]\w{5,17}$/;
+                let vthis = this;
+                if (this.sendData.newPassword === ""){
+                    this.newPasswordCheck = "新密码不能为空！！！";
+                    vthis.checkData.newPassword = false;
+                }else {
+                    if (!regex.test(this.sendData.newPassword)){
+                        this.newPasswordCheck = "新密码格式不正确！！！";
+                        vthis.checkData.newPassword = false;
+                    }else {
+                        this.newPasswordCheck = "";
+                        vthis.checkData.newPassword = true;
+                    }
+                }
+            },
+            checkAgainPassword(){
+                let vthis = this;
+                if (this.sendData.againPassword === ""){
+                    this.againPasswordCheck = "请确认密码！！！";
+                    vthis.checkData.againPassword = false;
+                }else {
+                    if (!(this.sendData.againPassword === this.sendData.newPassword)){
+                        vthis.againPasswordCheck = "两次密码不一致！！！";
+                        vthis.checkData.againPassword = false;
+                    }else {
+                        vthis.againPasswordCheck = "";
+                        vthis.checkData.againPassword = true;
+                    }
+                }
+            },
+            update(){
+                this.checkOldPassword();
+                this.checkNewPassword();
+                this.checkAgainPassword();
+                if (this.checkData.oldPassword && this.checkData.newPassword && this.checkData.againPassword){
+                    //向后端真正的改密码
+                    axios.get("/user/updatePwd/"+this.userId+"/"+this.sendData.newPassword+"/"+this.sendData.oldPassword,config).then(function (result){
+                       if (result.data.code === 20031){
+                           alert("修改成功！");
+                           window.location.href = "login.html";
+                       } else {
+                           alert("修改失败！");
+                       }
+                    });
+                }
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

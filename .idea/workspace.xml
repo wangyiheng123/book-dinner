@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="39ee9875-d2b2-465e-9b00-d5bbad244782" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="$PROJECT_DIR$/../../apache-maven-3.6.3-bin/apache-maven-3.6.3" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.3-bin\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2MPVmnwahSX5j4dDB3rTuEUPteu" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/javaprojects/book-dinner",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\html" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\img" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\img\shop8" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\img\shop7" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\img\shop6" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\img\foodImg" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static" />
+      <recent name="D:\arithmetic\book-dinner\src\main\resources\static\html" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.bookdinner.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.BookDinnerApplication">
+    <configuration name="TestGPS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.bookdinner.test.TestGPS" />
+      <module name="book-dinner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.bookdinner.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDinnerApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="book-dinner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.bookdinner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.bookdinner" />
+      <option name="MAIN_CLASS_NAME" value="com.example.bookdinner.BookDinnerApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDinnerApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="book-dinner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.bookdinner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.bookdinner" />
+      <option name="MAIN_CLASS_NAME" value="com.example.bookdinner.BookDinnerApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDinnerApplicationTests.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="book-dinner" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.bookdinner.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.bookdinner" />
+      <option name="MAIN_CLASS_NAME" value="com.example.bookdinner.BookDinnerApplicationTests" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookDinnerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="book-dinner" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.bookdinner.BookDinnerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BookDinnerApplication" />
+        <item itemvalue="JUnit.BookDinnerApplicationTests.test1" />
+        <item itemvalue="Application.TestGPS" />
+        <item itemvalue="JUnit.BookDinnerApplicationTests.test" />
+        <item itemvalue="JUnit.BookDinnerApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.21565.193" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-IU-243.21565.193" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="39ee9875-d2b2-465e-9b00-d5bbad244782" name="Default Changelist" comment="" />
+      <created>1677669367105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677669367105</updated>
+      <workItem from="1677669369123" duration="5934000" />
+      <workItem from="1677675348216" duration="1760000" />
+      <workItem from="1678795131136" duration="10450000" />
+      <workItem from="1678882057425" duration="852000" />
+      <workItem from="1679835574016" duration="1334000" />
+      <workItem from="1680605104241" duration="15307000" />
+      <workItem from="1680690441893" duration="22927000" />
+      <workItem from="1680770596611" duration="2124000" />
+      <workItem from="1680788698919" duration="1100000" />
+      <workItem from="1680864242601" duration="436000" />
+      <workItem from="1681039514097" duration="12875000" />
+      <workItem from="1681303572336" duration="14075000" />
+      <workItem from="1681387930923" duration="13065000" />
+      <workItem from="1681732819169" duration="11252000" />
+      <workItem from="1681820189832" duration="11281000" />
+      <workItem from="1681907816173" duration="14251000" />
+      <workItem from="1681990121167" duration="12131000" />
+      <workItem from="1682002346963" duration="16000" />
+      <workItem from="1682084011839" duration="12317000" />
+      <workItem from="1682148603993" duration="11480000" />
+      <workItem from="1682164153313" duration="502000" />
+      <workItem from="1682165320803" duration="13353000" />
+      <workItem from="1682234044552" duration="2053000" />
+      <workItem from="1682249898975" duration="13082000" />
+      <workItem from="1682335045649" duration="20989000" />
+      <workItem from="1682415909253" duration="2263000" />
+      <workItem from="1682467890261" duration="3801000" />
+      <workItem from="1682595092910" duration="12854000" />
+      <workItem from="1682683916028" duration="14111000" />
+      <workItem from="1682769678784" duration="15266000" />
+      <workItem from="1682832233858" duration="2361000" />
+      <workItem from="1682857168232" duration="15835000" />
+      <workItem from="1682943216328" duration="9154000" />
+      <workItem from="1683030654956" duration="6794000" />
+      <workItem from="1683202475444" duration="7582000" />
+      <workItem from="1683376170575" duration="15661000" />
+      <workItem from="1683810186630" duration="8356000" />
+      <workItem from="1683897105353" duration="14407000" />
+      <workItem from="1683983221857" duration="4552000" />
+      <workItem from="1684068959152" duration="14429000" />
+      <workItem from="1684237335642" duration="17715000" />
+      <workItem from="1684333398208" duration="9956000" />
+      <workItem from="1684508635837" duration="755000" />
+      <workItem from="1684846953522" duration="4063000" />
+      <workItem from="1684938744063" duration="2400000" />
+      <workItem from="1685019507143" duration="620000" />
+      <workItem from="1685324175684" duration="1200000" />
+      <workItem from="1685337316291" duration="10012000" />
+      <workItem from="1685348832668" duration="8667000" />
+      <workItem from="1685412794575" duration="3819000" />
+      <workItem from="1685423445527" duration="18389000" />
+      <workItem from="1685499836905" duration="941000" />
+      <workItem from="1685507240447" duration="22096000" />
+      <workItem from="1685598868475" duration="14861000" />
+      <workItem from="1685682760915" duration="22179000" />
+      <workItem from="1685763144098" duration="24120000" />
+      <workItem from="1685852946141" duration="10983000" />
+      <workItem from="1685867034931" duration="10803000" />
+      <workItem from="1685927804279" duration="2503000" />
+      <workItem from="1685950169043" duration="12214000" />
+      <workItem from="1686033804868" duration="14285000" />
+      <workItem from="1686294854738" duration="772000" />
+      <workItem from="1686406199293" duration="263000" />
+      <workItem from="1686616595912" duration="787000" />
+      <workItem from="1686618437553" duration="1477000" />
+      <workItem from="1706785653907" duration="13000" />
+      <workItem from="1706785683456" duration="971000" />
+      <workItem from="1710855723650" duration="481000" />
+      <workItem from="1750843278905" duration="1227000" />
+      <workItem from="1757236969444" duration="2913000" />
+      <workItem from="1757311375247" duration="103000" />
+      <workItem from="1788350397062" duration="888000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

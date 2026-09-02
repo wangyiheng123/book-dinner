@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          border: 1px solid lightskyblue;
+          position: relative;
+          left: 430px;
+      }
+      .container-button{
+          cursor: pointer;
+      }
+      #system-body-container-cart{
+          border-radius: 60px;
+          background-color: black;
+      }
+      .foodListClass{
+          width: 877px;
+          height: 150px;
+          border: 1px solid black;
+          position: relative;
+          cursor: pointer;
+          background-color: white;
+      }
+      .foodList-img{
+          width: 100px;
+          height: 100px;
+          border: 1px solid white;
+          position: relative;
+          left: 110px;
+          top: 25px;
+      }
+      .foodList-foodName{
+          width: 300px;
+          height: 40px;
+          border: 1px solid white;
+          position: relative;
+          left: 240px;
+          top: -70px;
+          text-align: center;
+          line-height: 40px;
+          font-size: 30px;
+          font-weight: bold;
+      }
+      .foodList-foodRank{
+          width: 300px;
+          height: 20px;
+          border: 1px solid white;
+          position: relative;
+          left: 240px;
+          top: -50px;
+          text-align: center;
+          line-height: 20px;
+          font-size: 20px;
+          color: red;
+      }
+      .foodList-foodNum{
+          width: 100px;
+          height: 20px;
+          border: 1px solid white;
+          position: relative;
+          left: 540px;
+          top: -72px;
+          text-align: center;
+          line-height: 20px;
+          font-size: 20px;
+      }
+      .foodList-btn{
+          width: 150px;
+          height: 40px;
+          border: 1px solid white;
+          position: relative;
+          left: 660px;
+          top: -157px;
+      }
+      .foodList-price{
+          width: 100px;
+          height: 50px;
+          position: relative;
+          left: 540px;
+          top: -200px;
+          text-align: center;
+          line-height: 50px;
+          font-size: 25px;
+      }
+      .cartAlert{
+          width: 900px;
+          height: 600px;
+          position: absolute;
+          left: 600px;
+          top: 150px;
+          border: 1px solid black;
+          background-color: white;
+      }
+      .shopDiv{
+          font-size: 20px;
+          position: relative;
+          top: 15px;
+          background-color: deepskyblue;
+          width: 840px;
+          height: 100px;
+          border-radius: 10px;
+          line-height: 100px;
+          left: 30px;
+          font-weight: bold;
+          margin-bottom: 15px;
+      }
+      #ball{
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background-color: orange;
+          text-align: center;
+          line-height: 30px;
+          position: relative;
+          left: var(--left);
+          top: var(--top);
+          /*top: -1200px;*/
+          animation: moveX 0.8s linear;
+      }
+      #father{
+          animation: moveY 0.8s cubic-bezier(0.5,-0.5,1,1);
+      }
+      @keyframes moveY{
+          to{
+              transform: translateY(var(--y));
+          }
+      }
+      @keyframes moveX{
+          to{
+              transform: translateX(var(--x));
+          }
+      }
+      .cartList{
+          width: 868px;
+          height: 150px;
+      }
+      .cartList-name{
+          width: 300px;
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          position: relative;
+          left: 220px;
+          top: -70px;
+          font-size: 30px;
+          font-weight: bold;
+      }
+      .cartBtn{
+          width: 40px;
+          height: 35px;
+          display: inline-block;
+          text-align: center;
+          line-height: 35px;
+          margin-left: 10px;
+      }
+      .noright{
+          margin-right: 0;
+
+      }
+      .right{
+          margin-right: 10px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+               <div id="system-body-container">
+                   <div id="system-body-container-title" style="height: 150px;border: 1px solid black">
+                       <div style="width: 600px;height:150px;display: flex;align-items: center;justify-content: center">
+                           <div style="width: 400px;height: 50px;text-align: center;line-height: 50px;font-size: 40px;font-weight: bold">
+                               {{shopName}}
+                               <div style="font-size: 20px">
+                                   评分<span style="color: red">{{shopScore}}</span>&nbsp;&nbsp;&nbsp;&nbsp;配送约<span style="color: red">{{shopMinute}}</span>分钟&nbsp;&nbsp;&nbsp;&nbsp;月售<span style="color: red">{{shopNum}}</span>
+                               </div>
+                           </div>
+                       </div>
+                       <div style="width: 300px;height:150px;position: absolute;left: 600px;top: 0px;">
+                           <img :src="shopImage" alt="无法显示图片" width="100" height="100" style="position: absolute;top: 25px;left: 70px;border: 1px solid black;">
+                       </div>
+                   </div>
+                   <div id="system-body-container-button" style="height: 50px;border: 1px solid black">
+                       <div style="position: relative;top: 10px">
+                           <div class="container-button" style="display: inline-block;font-size: 20px;position: relative;left: 20px;border-bottom-style:solid;border-bottom-color: orange" @click="swapButton(0)">点菜</div>
+                           <div class="container-button" style="display: inline-block;font-size: 20px;position: relative;left: 40px;border-bottom-style:none;border-bottom-color: orange" @click="swapButton(1)">评价</div>
+                           <div class="container-button" style="display: inline-block;font-size: 20px;position: relative;left: 60px;border-bottom-style:none;border-bottom-color: orange" @click="swapButton(2)">商家</div>
+                       </div>
+                   </div>
+                   <!--点菜的div-->
+                   <div v-show="orderFoodShow">
+                       <div id="system-body-container-foodList" style="height: 590px;border: 1px solid black;overflow: auto">
+                           <div v-for="food in list">
+                               <div class="foodListClass" @click="jumpFoodDetail($event)">
+                                   <span hidden>{{food.id}}</span>
+                                   <div class="foodList-img" style="pointer-events: none">
+                                       <img :src="food.image" alt="图片无法显示" width="100" height="100">
+                                   </div>
+                                   <div class="foodList-foodName" style="pointer-events: none">
+                                       {{food.name}}
+                                   </div>
+                                   <div class="foodList-foodRank" style="pointer-events: none">
+                                       {{food.numRanking}}
+                                   </div>
+                                   <div class="foodList-foodNum" style="pointer-events: none">
+                                       月售<span style="color: red">{{food.num}}</span>
+                                   </div>
+                                   <div class="foodList-btn" @click="prevent($event)">
+                                       <div style="width: 90px;height: 35px;display: inline-block;position: relative;left: 10px;top: 2px;visibility: hidden;">
+                                           <div class="aaa" style="width: 40px;height: 35px;display: inline-block;text-align: center;line-height: 35px;font-weight: bold;font-size: 30px;border-radius: 6px;background-color: lightskyblue" @click="reduce($event)">
+                                               -
+                                           </div>
+                                           <div class="foodCartNum" style="width: 40px;height: 35px;display: inline-block;text-align: center;line-height: 35px;font-size: 20px; ">
+                                               {{food.cartNum}}
+                                           </div>
+                                       </div>
+                                       <div id="addBtn" style="width: 40px;height: 35px;display: inline-block;position: relative;left: 10px;top: 2px;text-align: center;line-height: 35px;font-weight: bold;font-size: 30px;border-radius: 6px;background-color: orange" @click="add($event)" onclick="addAnimation(this)">
+                                           +
+                                       </div>
+                                   </div>
+                                   <div class="foodList-price" style="pointer-events: none">
+                                       ￥<span style="color: red">{{food.price}}</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div id="system-body-container-cart" style="height:78px;border:1px solid black;cursor: pointer">
+                           <div id="cart" style="clip-path: circle(50% at 50% 50%);width: 150px;height: 150px;position: relative;left:100px;top: -63px"  @click="appearCart">
+                               <img src="/img/rider.jpg" alt="图片无法显示" width="150" height="150">
+                           </div>
+                           <div style="color:white;position: absolute;width: 300px;height: 45px;top: 805px;left: 260px;font-size: 20px">
+                               ￥<span id="payNum">{{payNum}}</span>
+                           </div>
+                           <div style="color:white;position: absolute;width: 300px;height: 33px;top: 835px;left: 260px;font-size: 18px">
+                               预估另需配送费￥<span>{{otherSendPrice}}</span>
+                           </div>
+                           <div style="width: 250px;height: 78px;position: relative;left: 700px;top: -150px;cursor: pointer;text-align: center;line-height: 78px;font-size: 20px;color: black" v-show="payShow" @click="jumpSubmitOrder">
+                               <div style="width: 150px;height:78px;background-color: orange;">
+
+                               </div>
+                               <div style="width: 100px;height:78px;position: relative;left: 98px;top: -78px;border-radius: 60px;background-color: orange">
+                                   <div style="position: relative;left: -60px;top: 0px">
+                                       去结算
+                                   </div>
+                               </div>
+                           </div>
+                           <div style="width: 250px;height: 78px;position: relative;left: 700px;top: -150px;text-align: center;line-height: 78px;font-size: 20px;color: white" v-show="!payShow">
+                               <span>{{sendPrice}}</span>元起送
+                           </div>
+                       </div>
+                   </div>
+                   <!--评价的div-->
+                   <div v-show="adviceShow" style="border: 1px solid black;height: 669px;overflow: auto" >
+                       <div v-for="advice in adviceList" v-show="noAdviceShow">
+                           <div class="advice" style="width: 840px;height:auto;min-height: 200px;border-bottom: 1px solid black;position: relative;left: 30px">
+                               <div style="width: 50px;height: 50px;border-radius: 50%;position: relative;top: 10px">
+                                   <img src="/img/riderImage.png" alt="图片无法显示" width="50" height="50" style="clip-path: circle(50%)">
+                               </div>
+                               <div style="width: 250px;height: 25px;font-weight: bold;line-height: 25px;position: relative;left: 60px;top: -40px;font-size: 20px">
+                                   {{advice.user.name}}
+                               </div>
+                               <div style="width: 250px;height: 25px;font-size: 18px;position: relative;left: 60px;top: -40px;line-height: 25px">
+                                   {{advice.created}}
+                               </div>
+                               <div style="width: 200px;height: 30px;position: relative;left: 250px;top: -70px;display: flex" >
+                                   <div v-for="num in advice.starList">
+                                       <div style="width: 25px;height: 25px;clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);background-color: orange;float:left;position: relative;top: 3px;display: inline-block">
+
+                                       </div>
+                                   </div>
+                               </div>
+                               <div style="width: 800px;height: auto;min-height:24px;position: relative;top: -60px;word-break: break-all;line-height: 24px">
+                                   {{advice.comment}}
+                               </div>
+                               <div style="width: 300px;height: 90px;position: relative;top: -55px" >
+                                   <div style="display: flex">
+                                       <div style="width: 90px;height: 90px;border-radius: 10px;margin-right: 10px" v-for="image in advice.imageList">
+                                           <img :src="image" alt="图片无法显示" width="90" height="90" style="border-radius: 10px">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       <div style="width: 880px;height: 669px;text-align: center;line-height: 669px;font-size: 30px;font-weight: bold" v-show="!noAdviceShow">
+                           该店铺还没有评价！！！
+                       </div>
+                   </div>
+                   <!--商家的div-->
+                   <div v-show="shopShow" style="border: 1px solid black;height: 669px">
+                       <div class="shopDiv">
+                           店铺宗旨：<span style="color: red;font-weight: normal">{{shopSign}}</span>
+                       </div>
+                       <div class="shopDiv">
+                           店铺位置：<span style="color:red;font-weight: normal">{{shopLocation}}</span>
+                       </div>
+                       <div class="shopDiv" style="height: 200px">
+                           营业执照：
+                           <div style="width: 150px;height: 150px;border-radius: 10px;border: 1px solid black;position: absolute;left: 103px;top: 40px">
+                                <img :src="image" alt="图片无法显示" width="150" height="150" style="border-radius: 10px">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+          </div>
+          <!--购物车弹框-->
+          <div class="cartAlert" v-show="cartAlertShow">
+              <div style="width: 35px;height: 35px;border: 1px solid black;position: relative;left: 858px;top: 10px;cursor: pointer" @click="cancel">
+                  <img src="/img/100.jpg" alt="图片无法显示" width="35" height="35">
+              </div>
+              <div v-show="cartAddShow" style="width: 898px;height: 465px;border: 1px solid black;overflow: auto;position: relative;top: 18px">
+                  <div v-for="cart in cartList">
+                      <div class="cartList">
+                          <span hidden>{{cart.food.id}}</span>
+                          <div style="width: 100px;height: 100px;position: relative;left: 100px;top: 25px">
+                              <img :src="cart.food.image" alt="图片无法显示" width="100" height="100">
+                          </div>
+                          <div class="cartList-name">
+                              {{cart.food.name}}
+                          </div>
+                          <div style="width: 150px;height: 40px;position: relative;left: 220px;top: -60px;font-size: 25px;text-align: center;line-height: 40px">
+                              ￥<span style="color: red">{{cart.food.price}}</span>
+                          </div>
+                          <div style="width: 200px;height: 40px;position: relative;left: 590px;top: -154px">
+                              <div class="cartBtn" style="font-weight: bold;font-size: 30px;background-color: lightskyblue;border-radius: 6px;cursor: pointer" @click="cartReduce($event)">-</div>
+                              <div class="cartBtn" style="font-size: 20px">{{cart.num}}</div>
+                              <div class="cartBtn" style="font-weight: bold;font-size: 30px;background-color: orange;border-radius: 6px;cursor: pointer" @click="cartAdd($event)">+</div>
+                          </div>
+                      </div>
+                      <hr>
+                  </div>
+              </div>
+              <div v-show="!cartAddShow" style="width: 898px;height: 465px;border: 1px solid black;overflow: auto;position: relative;top: 18px;text-align: center;line-height: 465px;font-size: 25px">
+                  您还没有添加购物车！！！
+              </div>
+              <div style="width: 900px;height: 77px;background-color: lightskyblue;position: relative;top: 19px">
+                  <div style="width: 200px;height: 60px;text-align: center;line-height: 60px;font-size: 25px;font-weight: bold;position: relative;left: 500px;top: 10px">
+                      共计：<span style="color: red">{{totalPrice}}</span>元
+                  </div>
+                  <div v-show="resultShow" style="width: 150px;height: 50px;background-color: orange;border: 1px solid black;text-align: center;line-height: 50px;position: relative;left: 730px;top: -48px;border-radius: 6px;font-size: 20px;cursor: pointer" @click="jumpSubmitOrder">
+                      去结算
+                  </div>
+                  <div v-show="!resultShow" style="width: 150px;height: 50px;background-color: gray;border: 1px solid black;text-align: center;line-height: 50px;position: relative;left: 730px;top: -48px;border-radius: 6px;font-size: 20px;">
+                      <span>{{sendPrice}}</span>起送
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let containerBtn = document.getElementsByClassName("container-button");
+    let cartAlert = document.getElementsByClassName("cartAlert");
+</script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    let va = new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            shopId:"",
+            payShow:false,
+            testInput:"", //测试的属性，将来可以去掉
+            payNum:0,
+            shopName:"",
+            shopScore:"",
+            shopMinute:"",
+            shopNum:"",
+            sendPrice:"",
+            shopImage:"",
+            shopSign:"",
+            shopLocation:"",
+            otherSendPrice:"",
+            orderFoodShow:true,
+            adviceShow:false,
+            shopShow:false,
+            cartAlertShow:false,
+            totalPrice:0,
+            cartAddShow:false,
+            resultShow:false,
+            list:{
+
+            },
+            cartList:{
+
+            },
+            cart:{
+                userId:"",
+                shopId:"",
+                foodId:"",
+                num:1
+            },
+            adviceList:{
+
+            },
+            noAdviceShow:false,
+            image:""
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            this.shopId = sessionStorage.getItem("shopId");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/shop/findShopById/"+this.shopId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.shopName = result.data.data.name;
+                    vthis.shopImage = result.data.data.image;
+                    vthis.shopScore = result.data.data.score;
+                    vthis.shopSign = result.data.data.sign;
+                    vthis.shopMinute = result.data.data.minute;
+                    vthis.shopLocation = result.data.data.location;
+                    vthis.shopNum = result.data.data.num;
+                    vthis.sendPrice = result.data.data.sendPrice;
+                    let osprice = Math.round(result.data.data.distance);
+                    vthis.otherSendPrice = osprice;
+                    sessionStorage.setItem("otherSendPrice",osprice);
+                }else {
+                    alert(result.data.message);
+                }
+            });
+            axios.get("/food/findFoodListByShopId/"+this.shopId+"/"+this.userId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.list = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+            axios.get("/cart/findAllCartByUserId/"+vthis.userId+"/"+vthis.shopId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.cartAddShow = true;
+                    vthis.cartList = result.data.data.list;
+                    vthis.totalPrice = Math.round(result.data.data.total * 100)/100;
+                    vthis.payNum = Math.round(result.data.data.total * 100)/100;
+                    if (vthis.payNum >= vthis.sendPrice){
+                        vthis.payShow = true;
+                    }else{
+                        vthis.payShow = false;
+                    }
+                }else {
+                    vthis.cartAddShow = false;
+                }
+            });
+            setTimeout(function (){
+                if (vthis.totalPrice >= vthis.sendPrice){
+                    vthis.resultShow = true;
+                }else {
+                    vthis.resultShow = false;
+                }
+                let foodCartNum = document.getElementsByClassName("foodCartNum");
+                for (let i = 0;i < foodCartNum.length;i++){
+                    if (parseInt(foodCartNum[i].innerHTML) > 0){
+                        foodCartNum[i].parentNode.style.visibility = "";
+                    }else {
+                        foodCartNum[i].parentNode.style.visibility = "hidden";
+                    }
+                }
+            },1500);
+            axios.get("/advice/findAdviceByUserIdShopId/"+vthis.shopId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.noAdviceShow = true;
+                    vthis.adviceList = result.data.data;
+                }else {
+                    vthis.noAdviceShow = false;
+                }
+            });
+            axios.get("/shop/findShopImageByShopId/"+vthis.shopId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.image = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            swapButton(e){
+                for (let i = 0;i < containerBtn.length;i++){
+                    if (i === e){
+                        containerBtn[i].style.borderBottomStyle = "solid";
+                    }else {
+                        containerBtn[i].style.borderBottomStyle = "none";
+                    }
+                }
+                if (e === 0){
+                    this.orderFoodShow = true;
+                    this.adviceShow = false;
+                    this.shopShow =false;
+                }else if (e === 1){
+                    this.orderFoodShow = false;
+                    this.adviceShow = true;
+                    this.shopShow =false;
+                }else if (e === 2){
+                    this.orderFoodShow = false;
+                    this.adviceShow = false;
+                    this.shopShow =true;
+                }
+            },
+            prevent(e){
+                //阻止增加购物车时继续向上冒泡
+                event.stopPropagation();
+            },
+            reduce(e){
+                let vthis = this;
+                let preFoodNum = e.target.nextElementSibling.innerText;
+                if (parseInt(preFoodNum) > 0){
+                    e.target.nextElementSibling.innerText = "" + (parseInt(preFoodNum) - 1);
+                    let reduceNum = parseFloat(e.target.parentNode.parentNode.nextElementSibling.firstElementChild.innerText);
+                    let reduceRes = vthis.payNum - reduceNum;
+                    vthis.payNum = Math.round(reduceRes * 100)/100;
+                    if (vthis.payNum >= vthis.sendPrice){
+                        vthis.payShow = true;
+                    }else{
+                        vthis.payShow = false;
+                    }
+                    //像后端发请求
+                    let foodId = e.target.parentNode.parentNode.parentNode.firstElementChild.innerHTML;
+                    axios.get("/cart/deleteFoodInCart/"+vthis.userId+"/"+foodId,config).then(function (result) {
+                        if (result.data.code === 20040){
+                            alert(result.data.message);
+                        }else if (result.data.code === 20030){
+                            alert(result.data.message);
+                        }
+                    });
+                }
+                if (parseInt(e.target.nextElementSibling.innerText) === 0){
+                    e.target.parentNode.style.visibility = "hidden";
+                }
+            },
+            add(e){
+                let vthis = this;
+                e.target.previousElementSibling.style.visibility = "";
+                let preFoodNum = e.target.previousElementSibling.firstElementChild.nextElementSibling.innerText;
+                e.target.previousElementSibling.firstElementChild.nextElementSibling.innerText = ""+(parseInt(preFoodNum) + 1);
+                let addNum = parseFloat(e.target.parentNode.nextElementSibling.firstElementChild.innerText);
+                let addRes = vthis.payNum + addNum;
+                vthis.payNum = Math.round(addRes * 100)/100;
+                if (vthis.payNum >= vthis.sendPrice){
+                    vthis.payShow = true;
+                }else{
+                    vthis.payShow = false;
+                }
+                vthis.cart.userId = vthis.userId;
+                vthis.cart.shopId = vthis.shopId;
+                vthis.cart.foodId = e.target.parentNode.parentNode.firstElementChild.innerHTML;
+                axios.post("/cart/addFoodInCart",vthis.cart,config).then(function (result) {
+                   if (result.data.code === 20050){
+                       alert(result.data.message);
+                   }else if (result.data.code === 20030){
+                       alert(result.data.message);
+                   }
+                });
+            },
+            appearCart(){
+                let vthis = this;
+                let systemBody = document.getElementById("system-body");
+                this.cartAlertShow = !this.cartAlertShow;
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+                axios.get("/cart/findAllCartByUserId/"+vthis.userId+"/"+vthis.shopId,config).then(function (result){
+                    if (result.data.code === 20061){
+                        vthis.cartAddShow = true;
+                        vthis.cartList = result.data.data.list;
+                        vthis.totalPrice = Math.round(result.data.data.total * 100)/100;
+                        vthis.payNum = Math.round(result.data.data.total * 100)/100;
+                        //商品列表中的按钮是否符合配送条件
+                        if (vthis.payNum >= vthis.sendPrice){
+                            vthis.payShow = true;
+                        }else{
+                            vthis.payShow = false;
+                        }
+                        //购物车中按钮是否符合配送条件
+                        if (vthis.totalPrice >= vthis.sendPrice){
+                            vthis.resultShow = true;
+                        }else {
+                            vthis.resultShow = false;
+                        }
+                    }else {
+                        vthis.cartAddShow = false;
+                    }
+                });
+            },
+            cancel(){
+                let vthis = this;
+                let systemBody = document.getElementById("system-body");
+                this.cartAlertShow = !this.cartAlertShow;
+                systemBody.style.filter = "blur(0px)";
+                systemBody.style.pointerEvents = "";
+                window.location.href = "orderFood.html?token="+this.token;
+            },
+            cartAdd(e){
+                let  vthis = this;
+                e.target.previousElementSibling.innerHTML = "" + (parseInt(e.target.previousElementSibling.innerHTML)+1);
+                let res = vthis.totalPrice + parseFloat(e.target.parentNode.previousElementSibling.firstElementChild.innerHTML);
+                vthis.totalPrice = Math.round(res * 100) / 100;
+                //购物车中按钮是否符合配送条件
+                if (vthis.totalPrice >= vthis.sendPrice){
+                    vthis.resultShow = true;
+                }else {
+                    vthis.resultShow = false;
+                }
+                //给后端发请求
+                vthis.cart.userId = vthis.userId;
+                vthis.cart.shopId = vthis.shopId;
+                vthis.cart.foodId = e.target.parentNode.parentNode.firstElementChild.innerHTML;
+                axios.post("/cart/addFoodInCart",vthis.cart,config).then(function (result) {
+                    if (result.data.code === 20050){
+                        alert(result.data.message);
+                    }else if (result.data.code === 20030){
+                        alert(result.data.message);
+                    }
+                });
+            },
+            cartReduce(e){
+                let  vthis = this;
+                if (parseInt(e.target.nextElementSibling.innerHTML) > 0){
+                    e.target.nextElementSibling.innerHTML = "" + (parseInt(e.target.nextElementSibling.innerHTML) - 1);
+                    let res = vthis.totalPrice - parseFloat(e.target.parentNode.previousElementSibling.firstElementChild.innerHTML);
+                    vthis.totalPrice = Math.round(res * 100) / 100;
+                    //购物车中按钮是否符合配送条件
+                    if (vthis.totalPrice >= vthis.sendPrice){
+                        vthis.resultShow = true;
+                    }else {
+                        vthis.resultShow = false;
+                    }
+                    //像后端发送请求  20040 20030
+                    let foodId = e.target.parentNode.parentNode.firstElementChild.innerHTML;
+                    axios.get("/cart/deleteFoodInCart/"+vthis.userId+"/"+foodId,config).then(function (result) {
+                        if (result.data.code === 20040){
+                            alert(result.data.message);
+                        }else if (result.data.code === 20030){
+                            alert(result.data.message);
+                        }
+                    });
+                }
+
+            },
+            jumpFoodDetail(e){
+                //将商品信息的Id传递给详情页面
+                sessionStorage.setItem("foodDetailId",e.target.firstElementChild.innerHTML);
+                //跳转到详情页面
+                window.location.href = "foodDetail.html?token="+this.token;
+            },
+            jumpSubmitOrder(){
+                window.location.href = "submitOrder.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+<script>
+    //点击加号后实现的动画效果
+    function addAnimation(e){
+        let div = document.createElement('div');
+        div.id = 'father';
+        div.innerHTML = '<div id="ball">+</div>';
+        let btnRect = e.getBoundingClientRect();
+        let left = btnRect.left + btnRect.width/2 - 25;
+        let top = btnRect.top - 1870;
+        let carRect = document.getElementById("cart").getBoundingClientRect();
+        let x = carRect.left + 50 - 15 - left;
+        let y = carRect.top - btnRect.top +16;
+        div.style.setProperty('--left',left+'px');
+        div.style.setProperty('--top',top+'px');
+        div.style.setProperty('--x',x+'px');
+        div.style.setProperty('--y',y+'px');
+        div.addEventListener('animationend',() =>{
+            div.remove();
+        });
+        document.body.appendChild(div);
+    }
+</script>
+</html>

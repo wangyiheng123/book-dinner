@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      .itemList{
+          width: 880px;
+          height: 200px;
+          cursor: pointer;
+      }
+      .itemDiv{
+          width: 880px;
+          height: 175px;
+          position: relative;
+          top: 25px;
+          border-radius: 10px;
+          background-color: deepskyblue;
+      }
+      #system-body-container-second{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+          text-align: center;
+          line-height: 874px;
+          font-size: 30px;
+          font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+               <div id="system-body-container" v-show="orderShow">
+                  <div style="width: 400px;height: 40px;background-color: whitesmoke;position: relative;left: 250px;top: 20px;border-radius: 30px">
+                      <div style="width: 35px;height: 35px;position: relative;left: 30px;top: 2px;display: inline-block;cursor: pointer" @click="search">
+                          <img src="/img/search.jpg" alt="图片无法显示" width="35" height="35">
+                      </div>
+                      <div style="width: 300px;height: 35px;position: relative;left: 40px;display: inline-block;top: -8px">
+                          <label>
+                              <input id="search" type="text" placeholder="请填写关键字" style="border-style: none;width: 300px;height: 35px;background-color: whitesmoke;outline: none;font-size: 18px;" v-model="selectKey">
+                          </label>
+                      </div>
+                  </div>
+                   <div style="width: 900px;height: 795px;background-color: lightskyblue;position: relative;top: 40px;overflow: auto" v-show="listShow">
+                       <div v-for="(item) in itemList">
+                           <div class="itemList">
+                               <div class="itemDiv" @click="jumpItemDetail($event)">
+                                   <span hidden style="pointer-events: none">{{item.id}}</span>
+                                   <div style="width: 300px;height: 35px;position: relative;left: 30px;top: 5px;line-height: 35px;font-size: 20px;font-weight: bold;pointer-events: none">
+                                       {{item.shop.name}}
+                                   </div>
+                                   <div style="width: 600px;height: 90px;position: relative;left: 30px;top: 10px;overflow: hidden;pointer-events: none">
+                                        <div v-for="(cart) in item.cartList" style="display: inline-block">
+                                            <div style="width: 105px;height: 90px;">
+                                                <div style="width: 100px;height: 65px;">
+                                                    <img :src="cart.food.image" alt="图片无法显示" width="100" height="65" style="border-radius: 8px">
+                                                </div>
+                                                <div style="width: 100px;height: 15px;text-align: center;line-height: 15px;font-family: 华文仿宋,serif;position: relative;top: 2px">
+                                                    {{cart.food.name}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+                                   <div style="pointer-events: none;display: inline-block;width: 80px;height: 35px;position: relative;left: 780px;top: -122px;text-align: center;line-height: 35px;font-weight: bold;font-size: 20px">
+                                       {{item.statusString}}
+                                   </div>
+                                   <div style="pointer-events: none;width: 400px;height: 30px;position: relative;top: -30px;left: 30px;line-height: 30px">
+                                       下单时间：<span>{{item.created}}</span>
+                                   </div>
+                                   <div style="width: 200px;height: 60px;position: relative;left: 670px;top: -155px;pointer-events: none">
+                                       <div style="width: 100px;height: 40px;position: relative;left: 100px;text-align: center;line-height: 40px;font-size: 20px">
+                                           ￥<span style="font-size: 25px;">{{item.totalPrice}}</span>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 730px;top: -40px;color: whitesmoke" @click="deleteItem($event)">
+                                   删除订单
+                               </div>
+                               <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: orange;cursor: pointer;position: relative;left: 580px;top: -80px;display: none" @click="toAdvice($event)">
+                                   去评价
+                               </div>
+                               <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: orange;cursor: pointer;position: relative;left: 580px;top: -80px;display: none" @click="finish($event)">
+                                   已收货
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div style="width: 900px;height: 795px;background-color: lightskyblue;position: relative;top: 40px;text-align: center;line-height: 795px;font-weight: bold;font-size: 30px" v-show="!listShow">
+                       没有查到相关订单
+                   </div>
+               </div>
+              <div id="system-body-container-second" v-show="!orderShow">
+                  您还没有订单信息！！！
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            itemList:{
+
+            },
+            orderShow:false,
+            selectKey:"",
+            listShow:true,
+
+        },
+        created(){
+            let vthis = this;
+            let okAdvice = [];
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/item/findItemsByUserId/"+vthis.userId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.orderShow = true;
+                    vthis.itemList = result.data.data;
+                }else {
+                    vthis.orderShow = false;
+                    alert(result.data.message);
+                }
+            });
+            axios.get("/advice/findItemIdFromAdviceStatus/"+vthis.userId,config).then(function (result) {
+               if (result.data.code === 20061){
+                   okAdvice = result.data.data;
+               }
+            });
+            let itemDivList = document.getElementsByClassName("itemDiv");
+            setTimeout(function () {
+                for (let i = 0;i < vthis.itemList.length;i++){
+                    if (vthis.itemList[i].status === 0){
+                        itemDivList[i].nextElementSibling.nextElementSibling.style.display = "";
+                        itemDivList[i].nextElementSibling.nextElementSibling.nextElementSibling.style.display = "none";
+                    }else {
+                        itemDivList[i].nextElementSibling.nextElementSibling.style.display = "none";
+                        itemDivList[i].nextElementSibling.nextElementSibling.nextElementSibling.style.display = "";
+                    }
+                }
+                for (let a = 0; a < itemDivList.length;a++){
+                    for (let  b = 0;b < okAdvice.length;b++){
+                        if (itemDivList[a].firstElementChild.innerText == okAdvice[b]){
+                            itemDivList[a].nextElementSibling.nextElementSibling.style.display = "none";
+                            itemDivList[a].nextElementSibling.nextElementSibling.nextElementSibling.style.display = "none";
+                        }
+                    }
+                }
+            },500);
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            search() {
+                let vthis = this;
+                if (vthis.selectKey === ""){
+                    alert("关键字不能为空！");
+                }else {
+                    axios.get("/item/findItemByUserIdBeLiked/"+vthis.userId+"/"+vthis.selectKey,config).then(function (result) {
+                        if (result.data.code === 20061){
+                            vthis.listShow = true;
+                            vthis.itemList = result.data.data;
+                        }else {
+                            vthis.listShow = false;
+                            alert(result.data.message);
+                        }
+                    });
+                }
+            },
+            jumpItemDetail(e){
+                sessionStorage.setItem("itemDetailItemId",e.target.firstElementChild.innerHTML);
+                window.location.href = "itemDetail.html?token="+this.token;
+            },
+            deleteItem(e){
+                let vthis = this;
+                let flag = window.confirm("确定要删除这条订单吗？");
+                if (flag){
+                    axios.get("/item/deleteItemById/"+e.target.parentNode.firstElementChild.firstElementChild.innerHTML+"/"+this.userId,config).then(function (result) {
+                        if (result.data.code === 20041){
+                            vthis.itemList = result.data.data;
+                        }else {
+                            alert(result.data.message);
+                        }
+                    });
+                }
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            toAdvice(e){
+                window.location.href = "itemAdvice.html?token="+this.token;
+                sessionStorage.setItem("adviceItemId",e.target.parentNode.firstElementChild.firstElementChild.innerHTML);
+            },
+            finish(e) {
+                let vthis = this;
+                let flag = window.confirm("确定已收货吗？");
+                if (flag){
+                    axios.get("/item/updateItemStatus/"+e.target.parentNode.firstElementChild.firstElementChild.innerHTML+"/"+vthis.userId,config).then(function (result) {
+                        if (result.data.code === 20061){
+                            vthis.itemList = result.data.data;
+                            sessionStorage.setItem("itemDetailItemId",e.target.parentNode.firstElementChild.firstElementChild.innerHTML);
+                            window.location.href = "itemDetail.html?token="+vthis.token;
+                        }else{
+                            alert(result.data.message);
+                        }
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>

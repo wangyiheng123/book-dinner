@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      #system-body-container1{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+          text-align: center;
+          line-height: 874px;
+          font-weight: bold;
+          font-size: 30px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: darkorange;text-align: center;line-height: 40px;position: absolute;left: 20px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold;">
+                  店铺列表
+              </div>
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: orange;text-align: center;line-height: 40px;position: absolute;left: 190px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold;" @click="jumpTo">
+                  上架店铺
+              </div>
+              <div id="system-body-container" style="overflow: auto" v-show="containerShow">
+                 <div v-for="shop in shopList">
+                     <div style="width: 880px;height: 150px;background-color: deepskyblue;margin-top: 15px;border-radius: 10px;cursor: pointer" @click="jumpToDetail($event)">
+                         <span hidden style="pointer-events: none">{{shop.id}}</span>
+                         <div style="width: 100px;height: 100px;border-radius: 10px;position: relative;left: 30px;top: 25px;pointer-events: none">
+                             <img :src="shop.image" alt="图片无法显示" width="100" height="100" style="border-radius: 10px">
+                         </div>
+                         <div style="width: 200px;height: 50px;line-height: 50px;font-size: 23px;font-weight: bold;position: relative;left: 145px;top: -75px;pointer-events: none">
+                             {{shop.name}}
+                         </div>
+                         <div style="width: 400px;height: 50px;line-height: 50px;font-size: 17px;position: relative;left: 145px;top: -75px;pointer-events: none">
+                             {{shop.location}}
+                         </div>
+                         <div style="width: 150px;height: 40px;line-height: 40px;font-size: 20px;position: relative;left: 550px;top: -173px;background-color: black;color: white;pointer-events: none">
+                             评分：<span style="color: darkorange">{{shop.score}}</span>分
+                         </div>
+                         <div style="width: 150px;height: 40px;line-height: 40px;font-size: 20px;position: relative;left: 550px;top: -173px;background-color: gray;pointer-events: none">
+                             月售量：<span style="color: darkorange">{{shop.num}}</span>
+                         </div>
+                         <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 730px;top: -180px;" @click.stop="deleteShop($event)">
+                             删除店铺
+                         </div>
+                         <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: orange;cursor: pointer;position: relative;left: 730px;top: -270px;" @click="addFood($event)">
+                             上架菜品
+                         </div>
+                     </div>
+                 </div>
+              </div>
+              <div id="system-body-container1" v-show="!containerShow">
+                  该城市还没有店铺上架！！！
+              </div>
+              <div style="width: 200px;height: 40px;border-radius: 10px;background-color: white;position: absolute;left: 1400px;top: 15px;border: 1px solid black">
+                  <div style="height: 40px;width: 180px;border-radius: 10px;line-height: 40px" id="cityDiv">
+
+                  </div>
+                  <div style="width: 20px;height: 40px;border-radius: 10px;position: relative;left: 180px;top: -42px;text-align: center;line-height: 40px;font-size: 23px;cursor: pointer" @click="cityLiAppear">
+                      v
+                  </div>
+              </div>
+              <div style="width: 200px;height: 100px;border-radius: 10px;background-color: white;position: absolute;left: 1400px;top: 55px;border: 1px solid black;overflow: auto" v-show="cityLiShow">
+                  <div v-for="city in townList">
+                      <span hidden>{{city.id}}</span>
+                      <div style="width: 180px;height: 20px;line-height: 20px;margin-bottom: 5px;cursor: pointer" @click="changeCity($event)">
+                          {{city.city}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            cityId:"",
+            cityLiShow:false,
+            cityName:"",
+            townList:{
+
+            },
+            shopList:{
+
+            },
+            containerShow:false,
+        },
+        watch:{
+            cityName(){
+                let vthis = this;
+                axios.get("/shop/findShopByCityId/"+vthis.cityId,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        vthis.shopList = result.data.data;
+                        vthis.containerShow = true;
+                    }else {
+                        vthis.containerShow = false;
+                    }
+                });
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            //查询现在的定位信息
+            axios.get("/shipping/getLocalAddress",config).then(function (result) {
+                if (result.data.code === 400401){
+                    let cityDiv = document.getElementById("cityDiv");
+                    vthis.cityId = result.data.data.id;
+                    vthis.cityName = result.data.data.city;
+                    cityDiv.innerText = result.data.data.city;
+                    axios.get("/shop/findShopByCityId/"+vthis.cityId,config).then(function (result) {
+                        if (result.data.code === 20061){
+                            vthis.shopList = result.data.data;
+                            vthis.containerShow = true;
+                        }else {
+                            vthis.containerShow = false;
+                        }
+                    });
+                }else {
+                    alert("定位失败！");
+                }
+            });
+            //查询所有城市信息
+            axios.get("/town/findAllTown",config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.townList = result.data.data;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpTo(){
+                window.location.href = "upShop.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            cityLiAppear(){
+                this.cityLiShow = !this.cityLiShow;
+            },
+            changeCity(e){
+                let cityDiv = document.getElementById("cityDiv");
+                cityDiv.innerText = e.target.innerText;
+                this.cityName = e.target.innerText;
+                this.cityId = e.target.previousElementSibling.innerText;
+                this.cityLiShow = false;
+            },
+            jumpToDetail(e){
+                sessionStorage.setItem("adminShopId",e.target.firstElementChild.innerText);
+                window.location.href = "adminShopDetail.html?token="+this.token;
+            },
+            deleteShop(e){
+                let vthis = this;
+                let flag = window.confirm("确定要删除这个店铺吗？");
+                if (flag){
+                    axios.get("/shop/deleteShopByShopId/"+e.target.parentElement.firstElementChild.innerText+"/"+vthis.cityId,config).then(function (result) {
+                        if (result.data.code === 20040){
+                            alert("删除失败！");
+                        }else if (result.data.code === 20041){
+                            vthis.shopList = result.data.data;
+                            vthis.containerShow = true;
+                        }else {
+                            vthis.containerShow = false;
+                        }
+                    });
+                }
+            },
+            addFood(e){
+                sessionStorage.setItem("upFoodShopId",e.target.parentNode.firstElementChild.innerText);
+                window.location.href = "upFood.html?token="+this.token;
+            }
+        }
+    });
+</script>
+</html>

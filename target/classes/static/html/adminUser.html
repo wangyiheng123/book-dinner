@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: darkorange;text-align: center;line-height: 40px;position: absolute;left: 20px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold;">
+                  个人信息
+              </div>
+              <div style="width: 150px;height: 40px;border-radius: 10px;background-color: orange;text-align: center;line-height: 40px;position: absolute;left: 190px;top: 10px;font-size: 20px;cursor: pointer;font-weight: bold;" @click="jumpTo">
+                  修改密码
+              </div>
+              <div id="system-body-container">
+                  <div style="width: 880px;height: 100px;text-align: center;line-height: 100px;font-weight: bold;font-size: 30px">
+                      个人信息页面
+                  </div>
+                  <div style="width: 880px;height: 550px;position: relative;top: 10px;background-color: deepskyblue;border-radius: 10px">
+                      <div style="width: 820px;height: 40px;line-height: 40px;font-weight: bold;font-size: 22px;position: relative;left: 30px;top: 45px">
+                          个人姓名：<input type="text" name="name" style="outline: none;width: 200px;height: 30px;color:black;font-size: 22px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="adminName">
+                          <div style="width: 100px;height: 35px;border-radius: 10px;text-align: center;line-height: 35px;font-size: 18px;font-weight: bold;background-color: orange;position: relative;left: 710px;top: -37px;cursor: pointer" @click="updateName">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 40px;line-height: 40px;font-weight: bold;font-size: 22px;position: relative;left: 30px;top: 65px">
+                          个人年龄：<input type="text" name="age" style="outline: none;width: 200px;height: 30px;color:black;font-size: 22px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="age">
+                          <div style="width: 100px;height: 35px;border-radius: 10px;text-align: center;line-height: 35px;font-size: 18px;font-weight: bold;background-color: orange;position: relative;left: 710px;top: -37px;cursor: pointer" @click="updateAge">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 40px;line-height: 40px;font-weight: bold;font-size: 22px;position: relative;left: 30px;top: 85px">
+                          个人邮箱：<input type="text" name="email" style="outline: none;width: 200px;height: 30px;color:black;font-size: 22px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="email">
+                          <div style="width: 100px;height: 35px;border-radius: 10px;text-align: center;line-height: 35px;font-size: 18px;font-weight: bold;background-color: orange;position: relative;left: 710px;top: -37px;cursor: pointer" @click="updateEmail">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 110px;line-height: 40px;font-weight: bold;font-size: 22px;position: relative;left: 30px;top: 105px">
+                          个人爱好：
+                          <textarea placeholder="填写个人爱好" style="width: 300px;height: 100px;font-size: 18px;border-radius: 10px;background-color: deepskyblue;position: absolute;left: 110px;top: 10px" v-model="likes">
+
+                          </textarea>
+                          <div style="width: 100px;height: 35px;border-radius: 10px;text-align: center;line-height: 35px;font-size: 18px;font-weight: bold;background-color: orange;position: relative;left: 710px;top: 40px;cursor: pointer" @click="updateLikes">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 110px;line-height: 40px;font-weight: bold;font-size: 22px;position: relative;left: 30px;top: 125px">
+                          个性签名：
+                          <textarea placeholder="填写个性签名" style="width: 300px;height: 100px;font-size: 18px;border-radius: 10px;background-color: deepskyblue;position: absolute;left: 110px;top: 10px" v-model="content">
+
+                          </textarea>
+                          <div style="width: 100px;height: 35px;border-radius: 10px;text-align: center;line-height: 35px;font-size: 18px;font-weight: bold;background-color: orange;position: relative;left: 710px;top: 40px;cursor: pointer" @click="updateContent">
+                              修改
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            adminName:"",
+            age:"",
+            email:"",
+            likes:"",
+            content:"",
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/user/findById/"+vthis.userId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.adminName = result.data.data.name;
+                    vthis.email = result.data.data.email;
+                    vthis.age = result.data.data.age;
+                    vthis.likes = result.data.data.likes;
+                    vthis.content = result.data.data.content;
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            jumpTo(){
+                window.location.href = "adminPwd.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            updateName(){
+                let vthis = this;
+                if (vthis.adminName === ""){
+                    alert("个人姓名不能为空！");
+                    return;
+                }
+                axios.get("/user/updateName/"+vthis.userId+"/"+vthis.adminName,config).then(function (result){
+                    if (result.data.code === 20031){
+                        alert("修改成功！");
+                        sessionStorage.setItem("name",result.data.data.name);
+                        vthis.name = sessionStorage.getItem("name");
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            updateAge(){
+                let vthis = this;
+                if (vthis.age === ""){
+                    alert("年龄不能为空！");
+                    return;
+                }
+                if (isNaN(vthis.age)){
+                    alert("请填写正确的年龄！");
+                    return;
+                }
+                axios.get("/user/updateAge/"+vthis.userId+"/"+vthis.age,config).then(function (result){
+                    if (result.data.code === 20031){
+                        alert("修改成功！");
+                        vthis.age = result.data.data.age;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            updateEmail(){
+                let vthis = this;
+                let regex = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(.[a-zA-Z0-9_-]+)+$/;
+                if (vthis.email === ""){
+                    alert("邮箱不能为空！");
+                    return;
+                }
+                if (!regex.test(vthis.email)){
+                    alert("请填写正确的邮箱！");
+                    return;
+                }
+                axios.get("/user/updateEmail/"+vthis.userId+"/"+vthis.email,config).then(function (result){
+                    if (result.data.code === 20031){
+                        alert("修改成功！");
+                        vthis.email = result.data.data.email;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            updateLikes(){
+                let vthis = this;
+                if (vthis.likes === ""){
+                    return;
+                }
+                axios.get("/user/updateLikes/"+vthis.userId+"/"+vthis.likes,config).then(function (result){
+                    if (result.data.code === 20031){
+                        alert("修改成功！");
+                        vthis.likes = result.data.data.likes;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            updateContent(){
+                let vthis = this;
+                if (vthis.content === ""){
+                    return;
+                }
+                axios.get("/user/updateContent/"+vthis.userId+"/"+vthis.content,config).then(function (result){
+                    if (result.data.code === 20031){
+                        alert("修改成功！");
+                        vthis.content = result.data.data.content;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            }
+        }
+    });
+</script>
+</html>

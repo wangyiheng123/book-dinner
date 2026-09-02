@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      .updateBtn{
+          position: absolute;
+          width: 80px;
+          height: 30px;
+          background-color: orange;
+          font-weight: bold;
+          font-size: 18px;
+          border-radius: 5px;
+          left: 720px;
+          top: 7px;
+          text-align: center;
+          line-height: 30px;
+          cursor: pointer;
+      }
+      .updateBtn1{
+          position: absolute;
+          width: 80px;
+          height: 30px;
+          background-color: orange;
+          font-weight: bold;
+          font-size: 18px;
+          border-radius: 5px;
+          left: 720px;
+          top: 16px;
+          text-align: center;
+          line-height: 30px;
+          cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex" >
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div id="system-body-container" style="overflow: auto">
+                  <div style="width: 880px;height: 100px;text-align: center;line-height: 100px;font-size: 26px;font-weight: bold">
+                      店铺的详细信息
+                  </div>
+                  <div style="width: 880px;height:500px;border-radius: 10px;background-color: deepskyblue">
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 15px;line-height: 40px;font-size: 18px">
+                          <span style="font-weight: bold">店铺名称</span>：<input type="text" name="shopName" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.name">
+                          <div class="updateBtn" @click="updateName">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 20px;line-height: 40px;font-size: 18px">
+                          <span style="font-weight: bold">店铺地址</span>：<input type="text" name="shopAddress" style="outline: none;width: 300px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.address">
+                          <div class="updateBtn" @click="updateAddress">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 25px;line-height: 40px;font-size: 18px">
+                          <span style="font-weight: bold">宣传标语</span>：<input type="text" name="sign" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.sign">
+                          <div class="updateBtn" @click="updateSign">
+                              修改
+                          </div>
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 30px;line-height: 40px;font-size: 18px">
+                          <span style="font-weight: bold">所在城市</span>：<input readonly type="text" name="shopCity" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.city">
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 35px;line-height: 47px;font-size: 18px">
+                          <span style="font-weight: bold">创建时间</span>：<input readonly type="text" name="created" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.created">
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 40px;line-height: 47px;font-size: 18px">
+                          <span style="font-weight: bold">店铺评分</span>：<input readonly type="text" name="created" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.score">
+                      </div>
+                      <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 45px;line-height: 47px;font-size: 18px">
+                          <span style="font-weight: bold">月&nbsp;&nbsp;售&nbsp;&nbsp;量</span>：<input readonly type="text" name="created" style="outline: none;width: 200px;height: 20px;color:black;font-size: 18px;border: none;border-bottom: 1px solid black;background-color: deepskyblue;" v-model="shop.num">
+                      </div>
+                      <div style="width: 820px;height: 120px;position: relative;left: 30px;top: 50px;line-height: 52px;font-size: 18px;">
+                          <span style="font-weight: bold">营业执照</span>：
+                          <div style="width: 100px;height: 100px;border-radius: 10px;border: 1px solid black;position: relative;left: 90px;top: -30px">
+                               <img :src="shop.image" id="image" alt="图片无法显示" width="100" height="100" style="border-radius: 10px">
+                          </div>
+                          <div id="updateBtn1" class="updateBtn1">
+                              修改
+                          </div>
+                          <form id="fileForm" enctype="multipart/form-data">
+                              <input type="file" id="uploadFile" accept="image/*" name="file" style="display: none" onchange="selectImage(event)">
+                          </form>
+                      </div>
+                  </div>
+                  <div v-show="foodListShow" style="width: 880px;height: auto;background-color: deepskyblue;border-radius: 10px;min-height: 150px;position: relative;top: 10px">
+                      <div v-for="food in foodList">
+                          <div style="width: 820px;height: 150px;border-bottom: 1px solid black;position: relative;left: 30px;cursor: pointer" @click="jumpToFoodDetail($event)">
+                              <span hidden style="pointer-events: none">{{food.id}}</span>
+                              <div style="width: 100px;height: 100px;border-radius: 10px;position: relative;top: 25px;pointer-events: none">
+                                  <img :src="food.image" alt="图片无法显示" width="100" height="100" style="border-radius: 10px">
+                              </div>
+                              <div style="width: 200px;height: 40px;position: relative;left: 120px;line-height: 40px;font-weight: bold;font-size: 20px;top: -80px;pointer-events: none">
+                                  {{food.name}}
+                              </div>
+                              <div style="width: 350px;height: 40px;position: relative;left: 120px;line-height: 40px;font-size: 18px;top: -60px;pointer-events: none">
+                                  主要成分：<span>{{food.chargeMixture}}</span>
+                              </div>
+                              <div style="width: 300px;height: 40px;line-height: 40px;font-size: 25px;position: relative;left: 510px;top: -160px;text-align: right;pointer-events: none">
+                                  ￥<span style="font-size: 28px">{{food.price}}</span>
+                              </div>
+                              <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 670px;top: -140px;" @click.stop="deleteFood($event)">
+                                  删除菜品
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div v-show="!foodListShow" style="width: 880px;height: auto;background-color: deepskyblue;border-radius: 10px;min-height: 150px;position: relative;top: 10px;text-align: center;line-height: 150px;font-weight: bold;font-size: 25px">
+                      该店铺还没有添加菜品！！！
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            shopId:"",
+            shop:{
+                name:"",
+                address:"",
+                sign:"",
+                city:"",
+                created:"",
+                score:"",
+                num:"",
+                image:""
+            },
+            foodList:{
+
+            },
+            foodListShow:false,
+        },
+        created(){
+            let vthis =this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            this.shopId = sessionStorage.getItem("adminShopId");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/shop/findShopDetailByShopId/"+vthis.shopId,config).then(function (result){
+                if (result.data.code === 20061){
+                    vthis.foodListShow = true;
+                    vthis.shop.name = result.data.data.shop.name;
+                    vthis.shop.address = result.data.data.shop.location;
+                    vthis.shop.sign = result.data.data.shop.sign;
+                    vthis.shop.city = result.data.data.city;
+                    vthis.shop.created = result.data.data.shop.created;
+                    vthis.shop.score = result.data.data.shop.score;
+                    vthis.shop.num = result.data.data.shop.num;
+                    vthis.shop.image = result.data.data.image;
+                    vthis.foodList = result.data.data.foodList;
+                }else if (result.data.code === 20060){
+                    alert(result.data.message);
+                    window.location.href = "havedShop.html?token="+this.token;
+                }else {
+                    vthis.shop.name = result.data.data.shop.name;
+                    vthis.shop.address = result.data.data.shop.location;
+                    vthis.shop.sign = result.data.data.shop.sign;
+                    vthis.shop.city = result.data.data.city;
+                    vthis.shop.created = result.data.data.shop.created;
+                    vthis.shop.score = result.data.data.shop.score;
+                    vthis.shop.num = result.data.data.shop.num;
+                    vthis.shop.image = result.data.data.image;
+                    vthis.foodListShow = false;
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            jumpToFoodDetail(e){
+                sessionStorage.setItem("adminFoodDetailId",e.target.firstElementChild.innerText);
+                window.location.href = "adminFoodDetail.html?token="+this.token;
+            },
+            deleteFood(e){
+                let vthis = this;
+                //删除菜品后端
+                let flag = window.confirm("确定要删除这件菜品吗？");
+                if (flag){
+                    axios.get("/food/deleteFoodById/"+vthis.shopId+"/"+e.target.parentElement.firstElementChild.innerText,config).then(function (result) {
+                        if (result.data.code === 20041){
+                            vthis.foodList = result.data.data;
+                            vthis.foodListShow = true;
+                        }else if (result.data.code === 20060){
+                            vthis.foodListShow = false;
+                        }else {
+                            alert("删除失败！");
+                        }
+                    });
+                }
+            },
+            updateName(){
+                let vthis = this;
+                axios.get("/shop/updateShopNameByShopId/"+vthis.shopId+"/"+vthis.shop.name,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        alert("修改成功");
+                        vthis.foodListShow = true;
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodList = result.data.data.foodList;
+                    }else if (result.data.code === 20060){
+                        alert(result.data.message);
+                        window.location.href = "havedShop.html?token="+this.token;
+                    }else {
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodListShow = false;
+                    }
+                });
+            },
+            updateAddress(){
+                let vthis = this;
+                axios.get("/shop/updateShopAddressByShopId/"+vthis.shopId+"/"+vthis.shop.address,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        alert("修改成功");
+                        vthis.foodListShow = true;
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodList = result.data.data.foodList;
+                    }else if (result.data.code === 20060){
+                        alert(result.data.message);
+                        window.location.href = "havedShop.html?token="+this.token;
+                    }else {
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodListShow = false;
+                    }
+                });
+            },
+            updateSign(){
+                let vthis = this;
+                axios.get("/shop/updateShopSignByShopId/"+vthis.shopId+"/"+vthis.shop.sign,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        alert("修改成功");
+                        vthis.foodListShow = true;
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodList = result.data.data.foodList;
+                    }else if (result.data.code === 20060){
+                        alert(result.data.message);
+                        window.location.href = "havedShop.html?token="+this.token;
+                    }else {
+                        vthis.shop.name = result.data.data.shop.name;
+                        vthis.shop.address = result.data.data.shop.location;
+                        vthis.shop.sign = result.data.data.shop.sign;
+                        vthis.shop.city = result.data.data.city;
+                        vthis.shop.created = result.data.data.shop.created;
+                        vthis.shop.score = result.data.data.shop.score;
+                        vthis.shop.num = result.data.data.shop.num;
+                        vthis.shop.image = result.data.data.image;
+                        vthis.foodListShow = false;
+                    }
+                });
+            },
+        }
+    });
+</script>
+<script>
+    let updateBtn1 = document.getElementById("updateBtn1");
+    let uploadFile = document.getElementById("uploadFile");
+    let image = document.getElementById("image");
+    updateBtn1.addEventListener('click',function () {
+       uploadFile.click();
+    });
+    function selectImage(e) {
+        let fd = new FormData();
+        let shopId = sessionStorage.getItem("adminShopId")
+        fd.append('file',e.target.files[0]);
+        fd.append('shopId',shopId);
+        axios.post("/shop/updateShopImageByShopId",fd,config).then(function (result) {
+            if (result.data.code === 20091){
+                image.src = result.data.data;
+            }else {
+                alert(result.data.message);
+            }
+        });
+    }
+</script>
+</html>

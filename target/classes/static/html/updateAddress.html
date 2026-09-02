@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightblue;
+      }
+      #system-secondTitle{
+          width: 300px;
+          height: 50px;
+          background-image: -webkit-linear-gradient(0deg,mediumpurple 20%,red 33%,green);
+          -webkit-background-clip: text;
+          color: transparent;
+          font-family: 华文行楷, serif;
+          font-size: 40px;
+          position: relative;
+          left: 700px;
+          top: 30px;
+      }
+      #addAddress-body{
+          width: 900px;
+          height: 500px;
+          position: relative;
+          left: 370px;
+          top: 50px;
+      }
+      .addAddress-body-input{
+          border: none;
+          border-bottom:1px solid black;
+          background-color: lightblue;
+      }
+      .addAddress-body-button{
+          display: inline-block;
+          width: 100px;
+          height: 30px;
+          background-color: white;
+          text-align: center;
+          line-height: 30px;
+          cursor: pointer;
+          border: 1px solid black;
+      }
+      .addAddress-body-button:hover{
+          background-color: orange;
+      }
+      .addAddress-body-div{
+          width: 600px;
+          height: 35px;
+          position: relative;
+          left: 150px;
+      }
+      #addAddress-button{
+          width: 200px;
+          height: 40px;
+          position: relative;
+          left: 320px;
+          top: 230px;
+          border: 1px solid black;
+          background-color: lightgray;
+          cursor: pointer;
+          text-align: center;
+          line-height: 40px;
+      }
+      #addAddress-button:hover{
+          background-color: darkgray;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+               <div id="system-secondTitle" style="display: inline-block">
+                   修改地址信息
+               </div>
+              <div style="display: inline-block;width: 60px;height: 60px;position:relative;top: 30px;left: -100px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div id="addAddress-body">
+                   <div class="addAddress-body-div" style="top: 30px">
+                       <label>
+                           <span style="font-weight: bold;font-size: 20px">联系人：</span><input type="text" style="width: 300px;height: 20px;color: blue;font-size: 18px;outline: none" placeholder="请填写收货人姓名" class="addAddress-body-input" v-model="shipping.name">
+                       </label>
+                       <label>
+                           <input type="radio" value="先生" name="sex" checked="checked" @click="takeSex($event)"><span style="font-weight: bold;font-size: 20px">先生</span>
+                           <input type="radio" value="女士" name="sex" @click="takeSex($event)"><span style="font-weight: bold;font-size: 20px">女士</span>
+                       </label>
+                   </div>
+                   <div class="addAddress-body-div" style="top: 80px">
+                       <label>
+                           <span style="font-weight: bold;font-size: 20px">详细地址：</span><input type="text" style="width: 300px;height: 20px;color:blue;font-size: 18px;outline: none" placeholder="例如xx小区，xx号楼，x单元，xxx室" class="addAddress-body-input" v-model="shipping.address">
+                       </label>
+                   </div>
+                  <div class="addAddress-body-div" style="top: 130px">
+                      <label>
+                          <span style="font-weight: bold;font-size: 20px">手机号：</span><input type="text" maxlength="11" style="width: 300px;height: 20px;color:blue;font-size: 18px;outline: none" placeholder="请填写真实手机号码" class="addAddress-body-input" v-model="shipping.phone">
+                      </label>
+                  </div>
+                  <div class="addAddress-body-div" style="top: 180px">
+                      <div class="addAddress-body-button" @click="takeSign($event,0)">
+                          学校
+                      </div>
+                      <div class="addAddress-body-button" @click="takeSign($event,1)">
+                          公司
+                      </div>
+                      <div class="addAddress-body-button" @click="takeSign($event,2)">
+                          家
+                      </div>
+                  </div>
+                  <div id="addAddress-button" @click="update">
+                      <div>
+                          修改
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            shipping:{
+                id:"",
+                name:"",
+                sex:"先生",
+                address:"",
+                phone:"",
+                sign:""
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.shipping.id = sessionStorage.getItem("addressId");
+            this.shipping.name = sessionStorage.getItem("addressName");
+            this.shipping.sex = sessionStorage.getItem("addressSex");
+            this.shipping.address = sessionStorage.getItem("addressAddress");
+            this.shipping.phone = sessionStorage.getItem("addressPhone");
+            this.shipping.sign = sessionStorage.getItem("addressSign");
+            let sexDiv = document.getElementsByName("sex");
+            for (let j = 0;j < sexDiv.length;j++){
+                if (sexDiv[j].value === vthis.shipping.sex){
+                    sexDiv[j].setAttribute("checked","true");
+                }else{
+                    sexDiv[j].checked = false;
+                    sexDiv[j].removeAttribute("checked");
+                }
+            }
+            let signDiv = document.getElementsByClassName("addAddress-body-button");
+            for (let i = 0;i < signDiv.length;i++){
+                if (signDiv[i].innerText === vthis.shipping.sign){
+                    signDiv[i].style.backgroundColor = "orange";
+                }
+            }
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            takeSex(e){
+                this.shipping.sex = e.target.value;
+            },
+            takeSign(e,val){
+                let signDiv = document.getElementsByClassName("addAddress-body-button");
+                for (let i = 0;i < 3;i++){
+                    signDiv[i].style.backgroundColor = "white";
+                }
+                signDiv[val].style.backgroundColor = "orange";
+                this.shipping.sign = e.target.innerText;
+            },
+            back(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            update(){
+                let regex = /^1[3456789]\d{9}$/;
+                let vthis = this;
+                if (this.shipping.name === ""){
+                    alert("收件人姓名不能为空！");
+                }else if (this.shipping.address === ""){
+                    alert("详细地址不能为空！")
+                }else if (this.shipping.phone === ""){
+                    alert("联系电话不能为空！");
+                }else if (this.shipping.sign === ""){
+                    alert("请选择标签");
+                }else {
+                    if (!regex.test(this.shipping.phone)){
+                        alert("请填写正确的手机号！");
+                    }else {
+                        //向后端发送请求，添加地址信息
+                        axios.post("/shipping/updateAddressById",vthis.shipping,config).then(function (result){
+                            if (result.data.code === 20031){
+                                window.location.href = "address.html?token="+vthis.token;
+                            }else {
+                                alert(result.data.message);
+                            }
+                        });
+                    }
+                }
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

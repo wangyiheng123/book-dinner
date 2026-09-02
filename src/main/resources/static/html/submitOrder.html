@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      #system-body-container-title{
+          width: 900px;
+          height: 100px;
+          text-align: center;
+          line-height: 100px;
+          font-size: 30px;
+          font-weight: bold;
+      }
+      #system-body-container-address{
+          background-color: dodgerblue;
+          border-radius: 6px;
+          width: 880px;
+          height: 200px;
+      }
+      #system-body-container-foodList{
+          background-color: dodgerblue;
+          width: 880px;
+          height: 350px;
+          position: relative;
+          top: 20px;
+          border-radius: 6px;
+      }
+      #system-body-container-mark{
+          background-color: dodgerblue;
+          width: 880px;
+          height: 184px;
+          position: relative;
+          top: 40px;
+          border-radius: 6px;
+      }
+      #system-body-container-submitBtn{
+          width: 900px;
+          height: 87px;
+          border-radius: 60px;
+          background-color: black;
+      }
+      .foodItemList{
+          width: 800px;
+          height: 100px;
+      }
+      .itemPrice{
+          width: 80px;
+          height: 30px;
+          position: relative;
+          left: 568px;
+          font-size: 20px;
+      }
+      #tableWareDiv{
+          width: 600px;
+          height: 500px;
+          position: absolute;
+          background-color: white;
+          top: 200px;
+          left: 780px;
+      }
+      #markAlertDiv{
+          width: 600px;
+          height: 500px;
+          position: absolute;
+          background-color: white;
+          top: 200px;
+          left: 780px;
+      }
+      #updateDefault{
+          width: 600px;
+          height: 500px;
+          position: absolute;
+          background-color: white;
+          top: 200px;
+          left: 780px;
+          overflow: auto;
+      }
+      #payDiv{
+          width: 600px;
+          height: 500px;
+          position: absolute;
+          background-color: white;
+          top: 200px;
+          left: 780px;
+      }
+      #finishBtn{
+          width: 100px;
+          height: 45px;
+          background-color: lightskyblue;
+          border-radius: 10px;
+          cursor: pointer;
+          text-align: center;
+          line-height: 45px;
+          position: relative;
+          left: 480px;
+          top: 7px;
+      }
+      #finishBtn:hover{
+          background-color: deepskyblue;
+      }
+      .addressList{
+          width: 560px;
+          height: 100px;
+          border-bottom: 1px solid black;
+          position: relative;
+          left: 20px;
+          cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" @click="jumpAdvice">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div id="system-body-container">
+                  <div id="system-body-container-title">
+                      提交订单
+                  </div>
+                  <div style="width: 900px;height: 687px;overflow: auto">
+                      <div id="system-body-container-address">
+                         <div style="width: 820px;height: 80px;position: relative;left: 30px;top: 20px">
+                             <span hidden id="shippingId">{{shipping.id}}</span>
+                             <div style="display: inline-block;background-color: blue;width: 80px;height: 35px;border-radius: 7px;text-align: center;line-height: 35px;position: relative;top: 25px">家</div>
+                             <div style="display: inline-block;font-size: 25px;position: absolute;left: 90px;top: 25px">
+                                 {{shipping.address}}
+                             </div>
+                             <div style="position: absolute;top: 23px;font-size: 30px;left: 780px;cursor: pointer" @click="defaultAddressAlert">
+                                 >
+                             </div>
+                         </div>
+                          <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 20px">
+                              <div style="width: 80px;height: 30px;position:relative;top: 5px;display: inline-block;line-height: 30px;font-size: 18px">
+                                  {{shipping.name}}
+                              </div>
+                              <div style="width: 80px;height: 30px;position:absolute;top: 5px;display: inline-block;left: 90px;line-height: 30px;font-size: 18px">
+                                  {{shipping.sex}}
+                              </div>
+                              <div style="width: 150px;height: 30px;position:absolute;top: 5px;display: inline-block;left: 180px;line-height: 30px;font-size: 18px">
+                                  {{shipping.phone}}
+                              </div>
+                          </div>
+                          <div style="width: 820px;height: 40px;position: relative;left: 30px;top: 20px">
+                              <div style="width: 85px;height: 30px;position: relative;top: 5px;font-size: 20px;font-weight: bold">
+                                  立即送出
+                              </div>
+                              <div style="width: 150px;height: 30px;position: absolute;top: 5px;font-size: 20px;color: darkorange;left: 650px">
+                                  预计<span>{{arriveMinute}}</span>送达
+                              </div>
+                          </div>
+                      </div>
+                      <div id="system-body-container-foodList">
+                           <div style="width: 820px;height: 40px;position:relative;left: 30px;top: 5px;border-bottom: 1px solid black;line-height: 40px;font-size: 18px">
+                               {{shop.name}}
+                           </div>
+                          <div style="width: 820px;height: 250px;position:relative;left: 30px;top: 5px;border-bottom: 1px solid black;overflow: auto">
+                               <div v-for="cart in list">
+                                   <div class="foodItemList">
+                                       <div style="width: 80px;height: 80px;border: 1px solid black;position: relative;top: 10px;display: inline-block">
+                                           <img :src="cart.food.image" width="80" height="80">
+                                       </div>
+                                       <div style="display: inline-block;width: 130px;height: 80px;position: relative;left: 10px;top: 4px">
+                                           <div style="font-size: 20px;font-weight: bold">
+                                               {{cart.food.name}}
+                                           </div>
+                                           <div style="font-size: 20px;color: white">
+                                               {{cart.food.weight}}
+                                           </div>
+                                           <div style="font-size: 20px;color: white">
+                                               x<span>{{cart.num}}</span>
+                                           </div>
+                                       </div>
+                                       <div style="width: 80px;height: 30px;position: relative;left: 720px;top: -70px;font-size: 20px">
+                                           ￥<span>{{cart.food.price}}</span>
+                                       </div>
+                                   </div>
+                               </div>
+                              <div style="width: 800px;height: 30px">
+                                  <div style="display: inline-block;font-size: 20px;position:relative;top: 5px;width: 150px;height: 30px">
+                                      用户配送费
+                                  </div>
+                                  <div class="itemPrice" style="display: inline-block;position:relative;top: 8px;">
+                                      ￥<span>{{otherSendPrice}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div style="width: 820px;height: 40px;position:relative;left: 30px;top: 5px;line-height: 40px;font-size: 18px;">
+                              <div style="width:200px;height:35px;position: relative;left: 640px;top: 10px;font-size: 20px">
+                                  小计：￥<span style="font-size: 25px;color: red">{{total}}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div id="system-body-container-mark">
+                          <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 10px;">
+                             <div style="display:inline-block;width: 80px;height: 40px;position: relative;top: 15px;font-weight: bold;font-size: 20px;line-height: 40px">
+                                 备注
+                             </div>
+                              <div id="markContent" style="display:inline-block;width: 694px;height: 40px;position: relative;top: 15px;line-height: 40px;font-size: 20px;text-align: right;color: gray;cursor: pointer;" @click="addMark">
+                                  请添加备注
+                              </div>
+                              <div style="display:inline-block;width: 20px;height: 40px;position: relative;top: 15px;font-size: 25px;line-height: 40px;cursor: pointer" @click="addMark">
+                                  >
+                              </div>
+                          </div>
+                          <div style="width: 820px;height: 70px;position: relative;left: 30px;top: 10px">
+                              <div style="display:inline-block;width: 80px;height: 40px;position: relative;top: 15px;font-weight: bold;font-size: 20px;line-height: 40px">
+                                  餐具数量
+                              </div>
+                              <div id="tableNumDetail" style="display:inline-block;width: 694px;height: 40px;position: relative;top: 15px;line-height: 40px;font-size: 20px;text-align: right;color: gray;cursor: pointer" @click="addDinnerWare">
+                                  请选择餐具数量
+                              </div>
+                              <div style="display:inline-block;width: 20px;height: 40px;position: relative;top: 15px;font-size: 25px;line-height: 40px;cursor:pointer;" @click="addDinnerWare">
+                                  >
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="system-body-container-submitBtn">
+                      <div style="font-size: 25px;color: white;position: relative;width: 100px;height: 35px;left: 50px;top: 20px">
+                          ￥<span style="font-size: 35px">{{total}}</span>
+                      </div>
+                      <div style="width: 210px;height: 87px;position: relative;left: 737px;top: -35px;cursor: pointer" @click="payItem">
+                          <div style="width: 100px;height: 87px;display: inline-block;background-color: orange">
+
+                          </div>
+                          <div style="width: 100px;height: 87px;display: inline-block;border-radius: 60px;background-color: orange;position: relative;left: -42px">
+                              <div style="width: 100px;height: 35px;position: absolute;font-size: 25px;top: 27px;left: -30px">
+                                  提交订单
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!--添加备注弹窗-->
+          <div v-show="markAlertShow" id="markAlertDiv">
+              <div style="width: 600px;height: 60px;border-bottom: 1px solid black">
+                <div style="display: inline-block;width: 200px;height: 50px;text-align: center;line-height: 50px;font-size: 25px;font-weight: bold;position: relative;left: 200px">
+                    添加备注
+                </div>
+                  <div style="display: inline-block;width: 40px;height: 40px;border: 1px solid black;position: relative;left: 350px;top: 10px;cursor: pointer" @click="cancelDiv">
+                      <img src="/img/notDisplay.jpg" alt="图片无法显示" width="40" height="40">
+                  </div>
+              </div>
+              <div style="width: 600px;height: 200px;">
+                  <label>
+                      <textarea placeholder="请填写备注信息" style="width: 500px;height: 170px;position: relative;left: 50px;top: 15px;overflow: auto" v-model="itemMark">
+
+                      </textarea>
+                  </label>
+              </div>
+              <div style="width: 600px;height: 180px;border-bottom: 1px solid black">
+                  <div style="width: 100px;height: 30px;position: relative;left: 50px;line-height: 30px">
+                      快捷标签
+                  </div>
+                  <div style="width: 600px;height: 150px;">
+                      <div style="width: 600px;height: 50px;line-height: 50px">
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 50px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              少放辣
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 80px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              多放辣
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 110px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              不吃辣
+                          </div>
+                      </div>
+                      <div style="width: 600px;height: 50px;line-height: 50px">
+                          <div style="width: 80px;height: 30px;border: 1px solid black;position: relative;left: 50px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              不吃香菜
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 80px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              不吃葱
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 110px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              不吃蒜
+                          </div>
+                      </div>
+                      <div style="width: 600px;height: 50px;line-height: 50px">
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 50px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              多放盐
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 80px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              少放盐
+                          </div>
+                          <div style="width: 60px;height: 30px;border: 1px solid black;position: relative;left: 110px;text-align: center;line-height: 30px;display: inline-block;border-radius: 6px;cursor: pointer;background-color: orange" @click="addSign($event)">
+                              多点汤
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div style="width: 600px;height: 60px;">
+                  <div id="finishBtn" @click="finish">
+                      完成
+                  </div>
+              </div>
+          </div>
+          <!--添加餐具数量弹窗-->
+          <div v-show="tableWareNumShow" id="tableWareDiv">
+              <div style="width: 600px;height: 60px;border-bottom: 1px solid black">
+                  <div style="display: inline-block;width: 200px;height: 50px;text-align: center;line-height: 50px;font-size: 25px;font-weight: bold;position: relative;left: 200px">
+                      添加餐具数量
+                  </div>
+                  <div style="display: inline-block;width: 40px;height: 40px;border: 1px solid black;position: relative;left: 350px;top: 10px;cursor: pointer" @click="cancelDiv">
+                      <img src="/img/notDisplay.jpg" alt="图片无法显示" width="40" height="40">
+                  </div>
+                  <div style="width: 600px;height: 60px;line-height: 60px">
+                      <div id="needBtn" style="display: inline-block;text-align: center;width: 100px;height: 45px;border-radius: 10px;background-color: dodgerblue;line-height: 45px;position: relative;left: 130px;cursor: pointer" @click="needTable">
+                          需要餐具
+                      </div>
+                      <div id="noNeedBtn" style="display: inline-block;text-align: center;width: 100px;height: 45px;border-radius: 10px;background-color: lightskyblue;line-height: 45px;position: relative;left: 260px;cursor: pointer" @click="noNeedTable">
+                          无需餐具
+                      </div>
+                  </div>
+                  <div style="width: 600px;height: 300px;line-height: 60px">
+                      <div v-show="ifNeedTableShow" style="width: 300px;height: 150px;position: relative;left: 150px;top: 75px">
+                          <div style="width: 100px;height: 50px;background-color: deepskyblue;border-radius: 10px;font-size: 20px;font-weight: bold;display: inline-block;text-align: center;line-height: 50px;cursor: pointer" @click="reduceTable">
+                              -
+                          </div>
+                          <div style="width: 70px;height: 50px;text-align: center;line-height: 50px;font-weight: bold;font-size: 20px;display: inline-block">
+                              {{tableNum}}
+                          </div>
+                          <div style="width: 100px;height: 50px;background-color: orange;border-radius: 10px;font-size: 20px;font-weight: bold;display: inline-block;text-align: center;line-height: 50px;cursor: pointer" @click="addTable">
+                              +
+                          </div>
+                      </div>
+                      <div v-show="!ifNeedTableShow" style="width: 300px;height: 150px;position: relative;left: 150px;top: 75px;font-size: 30px;color: green;text-align: center">
+                          感谢您选择无需餐具，助力环保。
+                      </div>
+                  </div>
+                  <div style="width: 600px;height: 80px;line-height: 80px;">
+                        <div style="width: 400px;height: 50px;cursor: pointer;background-color: orange;border-radius: 20px;position: relative;left: 100px;text-align: center;line-height: 50px" @click="save">
+                            保存
+                        </div>
+                  </div>
+              </div>
+          </div>
+          <!--修改默认地址弹窗-->
+          <div v-show="updateDefaultShow" id="updateDefault">
+              <div v-for="shipping in addressList">
+                  <div class="addressList" @click="setDefault($event)">
+                      <span hidden>{{shipping.id}}</span>
+                      <div style="width: 50px;height: 50px;position: relative;top: 25px;line-height: 50px;pointer-events: none">
+                          <div style="width: 30px;height: 30px;border-radius: 50%;border: 1px solid orange;line-height: 30px">
+                              <div style="width: 20px;height: 20px;border-radius: 50%;border: 1px solid orange;position: relative;left: 4px;top: 4px">
+
+                              </div>
+                          </div>
+                      </div>
+                      <div style="width: 500px;height: 35px;position: relative;left: 50px;top: -30px;line-height: 35px;font-size: 25px;font-weight: bold;pointer-events: none">
+                          {{shipping.address}}
+                      </div>
+                      <div style="width: 500px;height: 25px;position: relative;top: -30px;left: 50px;line-height: 25px;font-size: 18px;pointer-events: none">
+                          <div style="display: inline-block;width: 80px;height: 25px;">
+                              {{shipping.name}}
+                          </div>
+                          <div style="display: inline-block;width: 50px;height: 25px;">
+                              {{shipping.sex}}
+                          </div>
+                          <div style="display: inline-block;width: 130px;height: 25px;">
+                              {{shipping.phone}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!--支付的弹窗-->
+          <div v-show="payShow" id="payDiv">
+              <div style="width: 600px;height: 60px;border-bottom: 1px solid black">
+                  <div style="display: inline-block;width: 200px;height: 50px;text-align: center;line-height: 50px;font-size: 25px;font-weight: bold;position: relative;left: 200px">
+                      支付方式
+                  </div>
+                  <div style="display: inline-block;width: 40px;height: 40px;border: 1px solid black;position: relative;left: 350px;top: 10px;cursor: pointer" @click="cancelDiv">
+                      <img src="/img/notDisplay.jpg" alt="图片无法显示" width="40" height="40">
+                  </div>
+              </div>
+              <div style="width: 600px;height: 350px;border-bottom: 1px solid black">
+                  <div style="width: 150px;height: 230px;display: inline-block;position: relative;left: 100px;top: 50px">
+                      <div style="width: 150px;height: 150px;">
+                          <img src="/img/weixin.png" alt="图片无法显示" width="150" height="150">
+                      </div>
+                      <div style="width: 150px;height: 50px;position: relative;top: 30px">
+                          <img src="/img/method1.jpg" alt="图片无法显示" width="150" height="50">
+                      </div>
+                  </div>
+                  <div style="width: 150px;height: 230px;display: inline-block;position: relative;left: 200px;top: 50px">
+                      <div style="width: 150px;height: 150px;">
+                          <img src="/img/zhifubao.png" alt="图片无法显示" width="150" height="150">
+                      </div>
+                      <div style="width: 150px;height: 50px;position: relative;top: 30px">
+                          <img src="/img/method2.jpg" alt="图片无法显示" width="150" height="50">
+                      </div>
+                  </div>
+              </div>
+              <div style="width: 600px;height: 90px;line-height: 90px">
+                   <div style="display: inline-block;width: 100px;height: 40px;position: relative;left: 150px;text-align: center;line-height: 40px;background-color: lightskyblue;border-radius: 10px;cursor: pointer" @click="submitItem">
+                        已支付
+                   </div>
+                  <div style="display: inline-block;width: 100px;height: 40px;position: relative;left: 250px;text-align: center;line-height: 40px;background-color: lightskyblue;border-radius: 10px;cursor: pointer" @click="cancelDiv">
+                        未支付
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            shopId:"",
+            otherSendPrice:"",
+            token:"",
+            markAlertShow:false,
+            tableWareNumShow:false,
+            itemMark:"",
+            ifHasTable:1, //是否需要餐具，1为需要，0为不需要
+            tableNum:1, //餐具的数量
+            ifNeedTableShow:true,
+            arriveMinute:"",
+            total:"",
+            updateDefaultShow:false,
+            payShow:false,
+            shipping:{
+
+            },
+            shop:{
+
+            },
+            list:{
+
+            },
+            addressList:{
+
+            },
+            defaultAddressIndex:"",
+            item:{
+                userId:"",
+                addressId:"",
+                shopId:"",
+                arriveMinute:"",
+                sendPrice:"",
+                totalPrice:"",
+                mark:"",
+                tableNum:"",
+                minute:"",
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.shopId = sessionStorage.getItem("shopId");
+            this.otherSendPrice = sessionStorage.getItem("otherSendPrice");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/cart/findCartItem/"+this.userId+"/"+this.shopId+"/"+this.otherSendPrice,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.shipping = result.data.data.shipping;
+                    if (vthis.shipping === null){
+                        alert("请添加地址信息！")
+                        window.location.href = "address.html?token="+vthis.token;
+                    }
+                    vthis.shop = result.data.data.shop;
+                    vthis.list = result.data.data.list;
+                    vthis.arriveMinute = result.data.data.arriveMinute;
+                    vthis.total = result.data.data.total;
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "orderFood.html?token="+this.token;
+            },
+            addDinnerWare(){
+                let systemBody = document.getElementById("system-body");
+                this.markAlertShow = false;
+                this.updateDefaultShow = false;
+                this.tableWareNumShow = true;
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+            },
+            addMark(){
+                let systemBody = document.getElementById("system-body");
+                this.tableWareNumShow = false;
+                this.updateDefaultShow = false;
+                this.markAlertShow = true;
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+            },
+            cancelDiv(){
+                let systemBody = document.getElementById("system-body");
+                this.tableWareNumShow = false;
+                this.markAlertShow = false;
+                this.updateDefaultShow = false;
+                this.payShow = false;
+                systemBody.style.filter = "blur(0px)";
+                systemBody.style.pointerEvents = "";
+            },
+            addSign(e){
+                this.itemMark = this.itemMark + e.target.innerText;
+            },
+            finish(){
+                let vthis = this;
+                if (this.itemMark === ""){
+                    this.cancelDiv();
+                    markContent.innerHTML = "请添加备注";
+                    markContent.style.color = "gray";
+                }else if (this.itemMark.length > 30){
+                    alert("备注最多不超过30字！");
+                    return false;
+                }
+                else {
+                    this.cancelDiv();
+                    let mark = document.getElementById("markContent");
+                    mark.style.color = "black";
+                    mark.innerHTML = this.itemMark;
+                    vthis.item.mark = this.itemMark;
+                    alert("成功添加备注");
+                }
+            },
+            needTable(){
+                needBtn.style.backgroundColor = "dodgerblue";
+                noNeedBtn.style.backgroundColor = "lightskyblue";
+                this.ifNeedTableShow = true;
+                this.ifHasTable = 1;
+            },
+            noNeedTable(){
+                needBtn.style.backgroundColor = "lightskyblue";
+                noNeedBtn.style.backgroundColor = "dodgerblue";
+                this.ifNeedTableShow = false;
+                this.ifHasTable = 0;
+            },
+            addTable(){
+                this.tableNum++;
+            },
+            reduceTable(){
+                if (this.tableNum !== 1){
+                    this.tableNum--;
+                }
+            },
+            save(){
+                if (this.ifHasTable === 1){
+                    this.cancelDiv();
+                    let tableNumDetail = document.getElementById("tableNumDetail");
+                    tableNumDetail.style.color = "black";
+                    tableNumDetail.innerHTML = this.tableNum + "份";
+                    alert("餐具数量添加成功！");
+                }else {
+                    this.cancelDiv();
+                    let tableNumDetail = document.getElementById("tableNumDetail");
+                    tableNumDetail.style.color = "black";
+                    tableNumDetail.innerHTML = "无需餐具";
+                    alert("感谢您选择无需餐具");
+                }
+            },
+            defaultAddressAlert(){
+                let vthis = this;
+                axios.get("/shipping/findAllAddress/"+this.userId,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        vthis.addressList = result.data.data;
+                        for (let i = 0;i < vthis.addressList.length;i++){
+                            if (vthis.addressList[i].isDefault === 1){
+                                vthis.defaultAddressIndex = i;
+                            }
+                        }
+                    }else {
+                        alert(result.data.message);
+                        window.location.href = "address.html?token="+vthis.token;
+                    }
+                });
+                let systemBody = document.getElementById("system-body");
+                this.tableWareNumShow = false;
+                this.markAlertShow = false;
+                this.updateDefaultShow = true;
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+                setTimeout(function (){
+                    let addressList = document.getElementsByClassName("addressList");
+                    addressList[vthis.defaultAddressIndex].firstElementChild.nextElementSibling.firstElementChild.firstElementChild.style.backgroundColor = "orange";
+                },500);
+            },
+            setDefault(e){
+                let vthis = this;
+                this.cancelDiv();
+                axios.get("/shipping/updateDefaultAddressNoByPage/"+e.target.firstElementChild.innerHTML+"/"+this.userId,config).then(function (result){
+                    if (result.data.code === 20031){
+                        axios.get("/shipping/findDefaultAddress/"+vthis.userId,config).then(function (result){
+                            if (result.data.code === 20061){
+                                vthis.shipping = result.data.data;
+                            }else {
+                                alert(result.data.message);
+                            }
+                        });
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+            },
+            payItem(){
+                let systemBody = document.getElementById("system-body");
+                this.payShow = true;
+                systemBody.style.filter = "blur(10px)";
+                systemBody.style.pointerEvents = "none";
+            },
+            submitItem(){
+                axios.get("/cart/findCartItem/"+this.userId+"/"+this.shopId+"/"+this.otherSendPrice,config).then(function (result) {
+                    if (result.data.code === 20061){
+                        vthis.arriveMinute = result.data.data.arriveMinute;
+                        vthis.item.arriveMinute = result.data.data.arriveMinute;
+                    }else {
+                        alert(result.data.message);
+                    }
+                });
+                let vthis = this;
+                this.item.userId = this.userId;
+                this.item.addressId = shippingId.innerText;
+                this.item.shopId = this.shopId;
+                this.item.sendPrice = this.otherSendPrice;
+                this.item.totalPrice = this.total;
+                this.item.minute = vthis.shop.minute;
+                let tableNumDetail = document.getElementById("tableNumDetail");
+                if (tableNumDetail.innerText === "请选择餐具数量"){
+                    vthis.item.tableNum = "无需餐具";
+                }else {
+                    vthis.item.tableNum = tableNumDetail.innerText;
+                }
+                setTimeout(function (){
+                    axios.post("/item/addItem",vthis.item,config).then(function (result) {
+                        if (result.data.code === 20051){
+                            //添加成功
+                            window.location.href = "orderSuccess.html?token="+vthis.token;
+                        }else if (result.data.code === 20050){
+                            //添加失败
+                            alert("订单提交失败！");
+                            window.location.href = "submitOrder.html?token="+vthis.token;
+                        }else {
+                            alert(result.data.code)
+                        }
+                    });
+                },1000);
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>

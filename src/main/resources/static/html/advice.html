@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      #system-body-container1{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+          text-align: center;
+          line-height: 874px;
+          font-weight: bold;
+          font-size: 30px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div id="system-body-container" style="overflow: auto" v-show="containerShow">
+                  <div v-for="advice in adviceList">
+                      <div style="width: 880px;height: auto;min-height:200px;background-color: deepskyblue;border-radius: 10px;margin-top: 10px">
+                          <div style="width: 50px;height: 50px;border-radius: 50%;position: relative;left: 30px;top: 10px">
+                              <img src="/img/riderImage.png" alt="图片无法显示" width="50" height="50" style="clip-path: circle(50%)">
+                          </div>
+                          <div style="width: 200px;height: 25px;line-height: 25px;font-size: 20px;position: relative;left: 95px;top: -40px;font-weight: bold">
+                              {{advice.user.name}}
+                          </div>
+                          <div style="width: 200px;height: 25px;line-height: 25px;font-size: 18px;position: relative;left: 95px;top: -40px">
+                              {{advice.created}}
+                          </div>
+                          <div style="width: 200px;height: 25px;position: relative;left: 285px;top: -67px;">
+                              <div style="display: flex">
+                                  <div v-for="num in advice.starList">
+                                      <div style="background-color: orange;clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);width: 25px;height: 25px">
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div style="width: 840px;height: auto;min-height: 24px;word-break: break-all;line-height: 24px;position: relative;left: 30px;top: -60px">
+                              {{advice.comment}}
+                          </div>
+                          <div style="width: 300px;height: 90px;position: relative;left: 30px;top: -52px;">
+                              <div style="display: flex;">
+                                  <div v-for="image in advice.imageList">
+                                      <div style="width: 90px;height: 90px;border-radius: 10px;margin-right: 10px">
+                                          <img :src="image" alt="图片无法显示" width="90" height="90" style="border-radius: 10px">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 720px;top: -20px;" @click="deleteAdvice($event)">
+                              删除评论
+                          </div>
+                          <span hidden>{{advice.id}}</span>
+                      </div>
+                  </div>
+              </div>
+              <div id="system-body-container1" style="overflow: auto" v-show="!containerShow">
+                  您还没有评论过任何信息
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            adviceList:{
+
+            },
+            containerShow:false,
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/advice/findAdviceByUserId/"+vthis.userId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.containerShow = true;
+                    vthis.adviceList = result.data.data;
+                }else {
+                    vthis.containerShow = false;
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            deleteAdvice(e){
+                let vthis = this;
+                let flag = window.confirm("确定要删除这条评论吗？");
+                if (flag){
+                    axios.get("/advice/deleteAdviceById/"+e.target.nextElementSibling.innerText+"/"+vthis.userId,config).then(function (result) {
+                        if (result.data.code === 20041){
+                            //删除成功
+                            vthis.containerShow = true;
+                            vthis.adviceList = result.data.data;
+                        }else if (result.data.code === 20040){
+                            //删除失败
+                            vthis.containerShow = true;
+                            alert("删除失败！");
+                        }else {
+                            //删除后未查询到相关信息
+                            vthis.containerShow = false;
+                        }
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>

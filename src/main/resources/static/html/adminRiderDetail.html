@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      #system-body-container1{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+          text-align: center;
+          line-height: 874px;
+          font-weight: bold;
+          font-size: 30px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎管理员<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpShop">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">店铺管理</h3>
+              </div>
+              <div id="function-Rider" class="function" @click="jumpRider" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">骑手管理</h3>
+              </div>
+              <div id="function-UM" class="function" @click="jumpUM">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">用户管理</h3>
+              </div>
+              <div id="function-User" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div v-show="riderDivShow" id="system-body-container" style="overflow: auto">
+                 <div v-for="item in itemListAndStarNumList">
+                     <div style="width: 880px;height: 350px;background-color: deepskyblue;border-radius: 10px;position: relative;top: 15px;margin-bottom: 10px">
+                         <span hidden>{{item.item.id}}</span>
+                         <div style="width: 300px;height: 35px;position: relative;left: 30px;top: 10px;line-height: 35px;font-weight: bold;font-size: 20px">
+                             {{item.item.shop.name}}
+                         </div>
+                         <div style="width: 800px;height: 100px;position: relative;left: 30px;top: 10px;display: flex">
+                             <div v-for="cart in item.item.cartList">
+                                 <div style="width: 100px;height: 100px;margin-right: 10px">
+                                     <div style="width: 100px;height: 80px;border-radius: 10px;margin-right: 10px">
+                                         <img :src="cart.food.image" alt="图片无法显示" width="100" height="80" style="border-radius: 10px">
+                                     </div>
+                                     <div style="width: 100px;height: 20px;text-align: center;line-height: 20px;font-weight: bold;font-size: 18px">
+                                         {{cart.food.name}}
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div style="width: 600px;height: 60px;position: relative;left: 30px;top: 15px;line-height: 35px;font-weight: bold;font-size: 20px">
+                             <div style="width: 60px;height: 60px;border-radius: 50%;border: 1px solid black">
+                                 <img src="/img/riderImage.png" alt="图片无法显示" width="60" height="60" style="clip-path: circle(50%)">
+                             </div>
+                             <div style="width: 120px;height: 40px;position: relative;left: 70px;top: -50px;line-height: 40px;font-weight: bold;font-size: 23px">
+                                 {{riderName}}
+                             </div>
+                             <div style="width: 300px;height: 30px;position: relative;left: 190px;top: -85px;display: flex">
+                                 <div v-for="num in item.starList">
+                                     <div style="width: 30px;height: 30px;clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);background-color: orange">
+
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div style="width: 300px;height: 35px;line-height: 35px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 17px">
+                             创建时间：<span style="font-weight: normal">{{item.item.created}}</span>
+                         </div>
+                         <div style="width: 300px;height: 35px;line-height: 35px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 17px">
+                             订单编号：<span style="font-weight: normal">{{item.item.itemId}}</span>
+                         </div>
+                         <div style="width: 300px;height: 35px;line-height: 35px;font-weight: bold;font-size: 20px;position: relative;left: 30px;top: 17px">
+                             订单状态：<span style="font-weight: normal">{{item.item.statusString}}</span>
+                         </div>
+                         <div style="width: 130px;height: 40px;border-radius: 30px;text-align: center;line-height: 40px;background-color: gray;cursor: pointer;position: relative;left: 730px;top: -20px;" @click="deleteItem($event)">
+                             删除订单
+                         </div>
+                     </div>
+                 </div>
+              </div>
+              <div v-show="!riderDivShow" id="system-body-container1">
+                  该骑手还没有配送记录！
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            riderId:"",
+            riderDivShow:false,
+            itemListAndStarNumList:{
+
+            },
+            riderName:""
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            this.riderId = sessionStorage.getItem("adminRiderId");
+            this.riderName = sessionStorage.getItem("adminRiderName");
+            config.headers.token = sessionStorage.getItem("token");
+            axios.get("/rider/findItemByRiderId/"+vthis.riderId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.riderDivShow = true;
+                    vthis.itemListAndStarNumList = result.data.data;
+                }else {
+                    vthis.riderDivShow = false;
+                }
+            });
+        },
+        methods:{
+            jumpIndex(){
+                window.location.href = "adminIndex.html?token="+this.token;
+            },
+            jumpShop(){
+                window.location.href = "havedShop.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            },
+            jumpRider(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "adminUser.html?token="+this.token;
+            },
+            jumpUM(){
+                window.location.href = "adminUserManange.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "adminRider.html?token="+this.token;
+            },
+            deleteItem(e){
+                let vthis = this;
+                let flag = window.confirm("确定要删除该订单吗？");
+                if (flag){
+                    axios.get("/item/adminDeleteItemById/"+e.target.parentElement.firstElementChild.innerText+"/"+vthis.riderId,config).then(function (result) {
+                        if (result.data.code === 20061){
+                            vthis.riderDivShow = true;
+                            vthis.itemListAndStarNumList = result.data.data;
+                        }else if (result.data.code === 20040){
+                            alert("删除失败！");
+                        }else {
+                            vthis.riderDivShow = false;
+                        }
+                    });
+                }
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+      #system-name{
+        border: 1px solid rebeccapurple;
+        background-color: deepskyblue;
+        float: left;
+        width: 200px;
+        height: 80px;
+      }
+      #header-white-space{
+        border: 1px solid brown;
+        width: 1889px;
+        height: 80px;
+        background-color: sandybrown;
+        text-align: center;
+        line-height: 80px;
+        font-size: 30px;
+      }
+      #system-function{
+        border: 1px solid black;
+        width: 200px;
+        height: 875px;
+        background-color: gray;
+      }
+      .function{
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .function:hover{
+          background-color: darkgray;
+      }
+      #system-img img{
+          width: 50px;
+          height: 50px;
+      }
+      #system-body{
+          width: 1689px;
+          height: 875px;
+          border: 1px solid red;
+          position: relative;
+          top: -877px;
+          left: 200px;
+          background-color: lightskyblue;
+      }
+      #system-body-container{
+          width: 900px;
+          height: 874px;
+          position: relative;
+          left: 430px;
+      }
+      .foodList{
+          width: 840px;
+          height: 100px;
+      }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <!--首页头部-->
+      <div id="index-header">
+          <!--首页系统名称-->
+          <div id="system-name">
+              <div id="system-img" style="display: inline-block;position: relative;top: 15px;left: 20px">
+                  <img src="../img/food1.jpg" alt="图片无法显示">
+              </div>
+              <h1 style="display:inline-block;font-family: '华文新魏',serif;position: relative;left: 18px;background-image: -webkit-linear-gradient(0deg,yellow 33%,red 33%,green);-webkit-background-clip: text;color: transparent">食全食美</h1>
+          </div>
+          <!--首页留白-->
+          <div id="header-white-space">
+              欢迎用户<span style="color: blue">{{name}}</span>登录
+          </div>
+          <!--首页功能-->
+          <div id="system-function">
+              <div id="function-index" class="function" @click="jumpIndex">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">首&nbsp;&nbsp;&nbsp;&nbsp;页</h3>
+              </div>
+              <div id="function-hotPointer" class="function" @click="jumpHot">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">热点统计</h3>
+              </div>
+              <div id="function-order" class="function" @click="jumpOrder" style="background-color: darkgray">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">订单管理</h3>
+              </div>
+              <div id="function-address" class="function" @click="jumpAddress">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">地址管理</h3>
+              </div>
+              <div id="function-user" class="function" @click="jumpUser">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">个人中心</h3>
+              </div>
+              <div id="function-advice" class="function">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">我的评价</h3>
+              </div>
+              <div id="leave" class="function" @click="leave">
+                  <h3 style="text-align: center;font-family: '华文仿宋',serif">退出系统</h3>
+              </div>
+          </div>
+          <!--首页展示体-->
+          <div id="system-body">
+              <div style="display: inline-block;width: 60px;height: 60px;position:absolute;top: 10px;left: 200px;border: 1px solid black;cursor: pointer" @click="back">
+                  <img src="/img/back.jpg" alt="图片无法显示" style="width: 60px;height: 60px;">
+              </div>
+              <div id="system-body-container" style="overflow: auto">
+                  <div style="width: 880px;height: 100px;">
+                      <div style="line-height: 100px;font-size: 30px;font-weight: bold;position: relative;left: 30px;width: 840px;height: 100px">
+                          订单<span>{{item.statusString}}</span>
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: 50px;border-radius: 10px;background-color: deepskyblue;" v-show="ifSendOkShow">
+                      <div style="line-height: 50px;font-size: 20px;position: relative;left: 30px;width: 840px;height: 50px">
+                          预计送达时间为<span>{{item.arriveMinute}}</span>,请您耐心等待。
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: 50px;border-radius: 10px;background-color: deepskyblue;" v-show="!ifSendOkShow">
+                      <div style="line-height: 50px;font-size: 20px;position: relative;left: 30px;width: 840px;height: 50px">
+                          感谢您的信任，期待再次光临
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: auto;min-height: 300px;border-radius: 10px;background-color: deepskyblue;position: relative;top: 10px">
+                      <div style="width: 840px;height: 50px;line-height: 50px;font-size: 20px;font-weight: bold;position: relative;left: 30px;border-bottom: 1px solid black">
+                          {{shop.name}}
+                      </div>
+                      <div style="width: 840px;height: auto;border-bottom: 1px solid black;min-height: 180px;position: relative;left: 30px">
+                          <div style="width: 840px;height: auto;min-height: 130px;border-bottom: 1px solid black" v-for="cart in cartList">
+                              <div class="foodList">
+                                  <div style="width: 90px;height: 80px;border: 1px solid black;position: relative;top: 10px;display: inline-block">
+                                      <img :src="cart.cartBack.food.image" alt="图片无法显示" width="90" height="80">
+                                  </div>
+                                  <div style="display: inline-block;width: 150px;height: 80px;position: relative;top: 2px;left: 5px">
+                                      <div style="width: 100px;height: 30px;line-height: 30px;font-size: 15px;font-weight: bold">
+                                          {{cart.cartBack.food.name}}
+                                      </div>
+                                      <div style="width: 100px;height: 25px;line-height: 25px;font-size: 15px">
+                                          {{cart.cartBack.food.weight}}
+                                      </div>
+                                      <div style="width: 100px;height: 25px;line-height: 25px;font-size: 15px">
+                                          x<span>{{cart.cartBack.num}}</span>
+                                      </div>
+                                  </div>
+                                  <div style="width: 100px;height: 50px;display: inline-block;position: relative;left: 490px;line-height: 50px;font-size: 20px;top: -35px">
+                                      ￥<span style="font-size: 25px">{{cart.price}}</span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div style="width: 840px;height: 49px;">
+                               <div style="width: 120px;height: 49px;line-height: 49px;font-size: 20px;display: inline-block">
+                                   用户配送费
+                               </div>
+                              <div style="width: 100px;height: 49px;line-height: 49px;font-size: 20px;display: inline-block;position: relative;left: 620px">
+                                  ￥<span style="font-size: 25px">{{item.sendPrice}}</span>
+                              </div>
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 55px;position: relative;left: 30px;">
+                           <div style="width: 200px;height: 55px;position: relative;left: 650px;text-align: center;line-height: 55px;font-size: 20px">
+                               总计：￥<span style="font-size: 25px">{{item.totalPrice}}</span>
+                           </div>
+                      </div>
+                  </div>
+                  <div style="width: 880px;height: 380px;background-color: deepskyblue;border-radius: 10px;position: relative;top: 20px">
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              收餐人
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 180px;height: 40px;line-height: 40px;position: relative;left: 560px;text-align: right">
+                              {{shipping.name}}(<span>{{shipping.sex}}</span>)
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              配送地址
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{shipping.address}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              联系电话
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{shipping.phone}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              配送骑手
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{rider.name}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              骑手电话
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{rider.phone}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              订单号码
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{item.itemId}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              下单时间
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{item.created}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              备注信息
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{item.mark}}
+                          </div>
+                      </div>
+                      <div style="width: 840px;height: 40px;position: relative;left: 30px">
+                          <div style="display: inline-block;font-size: 20px;width: 100px;height: 40px;line-height: 40px">
+                              餐具数量
+                          </div>
+                          <div style="display: inline-block;font-size: 20px;width: 500px;height: 40px;line-height: 40px;position: relative;left: 240px;text-align: right;">
+                              {{item.tableNum}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script src="/js/vue.js"></script>
+<script src="/js/axios.min.js"></script>
+<script>
+    let config = {
+        headers:{
+            token:""
+        }
+    };
+    new Vue({
+        el:"#app",
+        data:{
+            name:"",
+            userId:"",
+            token:"",
+            itemId:"",
+            ifSendOkShow:false,
+            item:{
+
+            },
+            shop:{
+
+            },
+            cartList:{
+
+            },
+            rider:{
+
+            },
+            shipping:{
+
+            }
+        },
+        created(){
+            let vthis = this;
+            this.name = sessionStorage.getItem("name");
+            this.userId = sessionStorage.getItem("userId");
+            this.token = sessionStorage.getItem("token");
+            config.headers.token = sessionStorage.getItem("token");
+            this.itemId = sessionStorage.getItem("itemDetailItemId");
+            axios.get("/item/findItemDetail/"+this.itemId,config).then(function (result) {
+                if (result.data.code === 20061){
+                    vthis.item = result.data.data.item;
+                    vthis.shop = result.data.data.shop;
+                    vthis.cartList = result.data.data.cartAndPriceList;
+                    vthis.rider = result.data.data.rider;
+                    vthis.shipping = result.data.data.shipping;
+                    if (result.data.data.item.status === 0){
+                        vthis.ifSendOkShow = false;
+                    }else if (result.data.data.item.status === 1){
+                        vthis.ifSendOkShow = true;
+                    }
+                }else {
+                    alert(result.data.message);
+                }
+            });
+        },
+        methods:{
+            jumpHot(){
+                window.location.href = "hotPointer.html?token="+this.token;
+            },
+            jumpIndex(){
+                window.location.href = "index.html?token="+this.token;
+            },
+            jumpUser(){
+                window.location.href = "user.html?token="+this.token;
+            },
+            jumpAddress(){
+                window.location.href = "address.html?token="+this.token;
+            },
+            jumpOrder(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            jumpAdvice(){
+                window.location.href = "advice.html?token="+this.token;
+            },
+            back(){
+                window.location.href = "order.html?token="+this.token;
+            },
+            leave(){
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+</html>
